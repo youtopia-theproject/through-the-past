@@ -399,8 +399,8 @@
                         <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s9.png">
                         <p id="scene2-text" class="scene2Text">คุณจะตามไปดูที่ตึกเก่าหรือไม่ ?</p>
                         <div class="button-container">
-                            <button style="flex: 2;" onclick="nextPage('scene10')">ตามไป ของแบบนี้ต้องไปดูเอง</button>
-                            <button style="flex: 1;" onclick="nextPage('scene15')">ไม่ดีกว่า ดูอันตราย</button>
+                            <button style="flex: 1;" onclick="nextPage('scene10')">ตามไป</button>
+                            <button style="flex: 1;" onclick="nextPage('scene15')">ไม่ดีกว่า</button>
                         </div>
                     `;
                     storyContainer.innerHTML = scene9n2Content;
@@ -1050,7 +1050,7 @@
 
                 case 'scene54':
                     let scene10Content;
-                    if (friendlyValue > 7) {
+                    if (friendlyValue < 8) {
                         scene10Content = `
                             <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s54.png">
                             <p id="scene2-text" class="scene2Text">คุณยังอยู่ในกลุ่มของ C ต่อไปด้วยสถานะเดียวกับ D และใช้ชีวิตต่อไปเรื่อย ๆ ตราบจนเรียนจบมัธยมปลาย</p>
