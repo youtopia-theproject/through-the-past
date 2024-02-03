@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./dist/output.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Athiti:wght@200;300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style/start.css">
+    <link rel="stylesheet" href="style/modal.css">
+    <link rel="stylesheet" href="style/warning.css">
+    <link rel="stylesheet" href="style/scene.css">
+    <title>YOUTOPIA | Through the Past Once Again</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Website</title>
+        <link rel="stylesheet" href="./dist/output.css">
+    </head>
+    
+    <body>
+        <header class="header">
+            <div class="logo">
+                <img loading="lazy" src="favicon.png" alt="Your Logo">
+            </div>
+            <div class="social">
+                <p>YOUTOPIA | Through the Past Once Again</p>
+                <a href="https://www.instagram.com/youtopia.theproject?igsh=MWt0dnhpbzFnYXd3eA%3D%3D&utm_source=qr" target="_blank" class="underline decoration-from-font">instagram.com/youtopia_proj</a>
+            </div>
+        </header>
+    
+        <main class="main-content">
+            <div class="content-left">
+                <img loading="lazy" src="image.png" class="image1 animate-pulse" alt="">
+            </div>
+            <div class="content-right">
+                <div id="game-container">
+                    <div id="hidden"> 
+                        <div id="story">
+                            <img loading="lazy" src="logo.png" alt="YOUTOPIA" class="fixed-logo">
+                            <h1>คุณเป็นนักเรียนใหม่ของโรงเรียนในปีการศึกษานี้ เป็นเด็กใหม่ธรรมดา ๆ คนหนึ่งเช่นเดียวกับนักเรียนใหม่คนอื่น เพียงแต่…</h1>
+                            <button class="start-button" onclick="startGame()">เข้าสู่เนื้อเรื่อง</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <footer class="footer">
+            <div class="footer-left">
+                <button onclick="toggleMusic()"></button>
+            </div>    
+            <div id="friendly-value" class="text-white"></div>
+            <div id="resilience-value" class="text-white"></div>
+            <div id="modal-button" onclick="toggleModal()">About</div>      
+                <div id="modal">
+                    <div id="modal-content" class="shadow-lg">
+                        <p style="color: black;">เกี่ยวกับเกม</p>
+                        <p style="color: black;">เกมนี้เป็นเรื่องราวของคนคนหนึ่งที่มีอดีตเป็นผู้ถูกบูลลี่และได้ย้ายเข้าไปเป็นนักเรียนใหม่ในโรงเรียนที่เต็มไปด้วยการบูลลี่ คุณจะต้องหาทางอยู่รอดในโรงเรียนนี้ให้ได้ ทุกการตัดสินใจ ทุกตัวเลือกจะมีผลต่อ ‘ค่าความเป็นมิตรจากเพื่อน’ และ ‘ค่าความแข็งแรงทางจิตใจ’ เลือกให้ดี ไม่เช่นนั้นชีวิตของคุณในโรงเรียนใหม่เป็นอันจบ!</p>
+                        <p style="color: black;">เครดิต</p>
+                        <p style="color: black;">เนื้อเรื่อง ภูริชญา พรพาณิชพันธุ์</p>
+                        <p style="color: black;">เขียนโปรแกรม พชรกร สวัสดี</p>
+                        <p style="color: black;">ภาพประกอบ ปนัณญา สังข์แก้ว และวิภาวี มะโนนัย</p>
+                        <p style="color: black;">ประเมิน ชาคริยา อนุทรงศักดิ์</p>
+                        <p style="color: black;">โปรเจกต์นี้เป็นส่วนหนึ่งของโครงการ ttb เท่อย่างไทย</p>
+                        <p style="color: black;">“เท่ได้ ต้องไม่บูลลี่”</p>
+                        <p style="color: black;">ขอขอบคุณอาจารย์ธวัชชัย สุลาลัย อาจารย์อรวิสาส์ กิจพิทักษ์ อาจารย์ธัญนันท์ สมนาม และผู้เกี่ยวข้องทุกท่าน </p>
+                        <button style="color: black;" onclick="toggleModal()">Close</button>
+                    </div>
+                <div class="close-modal-overlay" onclick="toggleModal()"></div>
+            </div>
+        </footer>
+
+    <script>
+        var friendlyValue = 5;
+        var resilienceValue = 3;
+
+        function updateFriendlyValue(value) {
+            friendlyValue += value;
+            document.getElementById('friendly-value').textContent = 'ค่าความเป็นมิตร : ' + friendlyValue;
+        }
+        function updateResilienceValue(value) {
+            resilienceValue += value;
+            document.getElementById('resilience-value').textContent = 'ค่าความแข็งแรงทางจิตใจ : ' + resilienceValue;
+        }
+
+        function fadeOut(element, duration) {
+            var opacity = 1;
+            var interval = 50; // Interval in milliseconds
+
+            var fadeOutInterval = setInterval(function () {
+                if (opacity > 0) {
+                    opacity -= interval / duration;
+                    element.style.opacity = opacity;
+                } else {
+                    clearInterval(fadeOutInterval);
+                    element.style.display = 'none';
+                }
+            }, interval);
+        }
+
+        function fadeIn(element, duration) {
+            var opacity = 0;
+            var interval = 50; // Interval in milliseconds
+
+            element.style.display = 'block';
+
+            var fadeInInterval = setInterval(function () {
+                if (opacity < 1) {
+                    opacity += interval / duration;
+                    element.style.opacity = opacity;
+                } else {
+                    clearInterval(fadeInInterval);
+                }
+            }, interval);
+        }
+
+        let i = 0;
+
+        function changeContent(idName, newText, nameNextPage) {
+            var contentElement = document.getElementById(idName);
+            if (i !== 0){
+                contentElement.classList.remove('fade-in')
+            }
+            contentElement.classList.add('fade-out');
+            setTimeout(function () {
+
+            if (i < newText.length) {
+                    contentElement.textContent = newText[i];
+                i++;
+                setTimeout(function () {
+                    contentElement.classList.remove('fade-out');
+                    contentElement.classList.add('fade-in');
+                }, 25);
+            } else {
+                // Reset index for the next iteration
+                i = 0;
+
+                // Optionally, you can add fade-in effect before transitioning to the next page
+                fadeIn(contentElement, 500);  // Adjust the duration as needed
+
+                // Proceed to the next page
+                if (resilienceValue <= 0) {
+                    nextPage('zeroResilience');
+                } else if (friendlyValue <= 0) {
+                    nextPage('zeroFriendly');
+                } else {
+                    nextPage(nameNextPage);
+                }
+                
+
+                setTimeout(function () {
+                    contentElement.classList.remove('fade-out');
+                    contentElement.classList.add('fade-in');
+                }, 25);
+
+            }
+        }, 150);
+        }
+
+
+        function startGame() {
+            var storyContainer = document.getElementById('story');
+
+            storyContainer.classList.add('fade-out');
+            setTimeout(function () {
+            var contentHeader = document.querySelector('.header');
+            contentHeader.innerHTML = '';
+
+
+            // Clear content in the right container
+            var contentRight = document.querySelector('.content-right');
+            contentRight.style = `   
+                padding-top: 20px;
+                justify-content: center;
+                align-items: flex-start; /* Align content at the left */
+                margin-top: 10px;
+                position: relative;
+                position: fixed;
+            `;
+
+            var gameContainer = document.getElementById('game-container');
+            gameContainer.classList.remove('hidden');
+
+            var mainContent = document.querySelector('.main-content');
+            mainContent.style.display = 'block'; // Display the element before fading in
+            fadeIn(mainContent, 500); // Adjust the duration as needed
+            
+            storyContainer.innerHTML = `
+                <img loading="lazy" class="trigger-warning" src="images/Trigger-Warning.png">
+                <p class="animate-pulse" style="font-size: 30px; color:#FFD42B; position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                <div class="full-click" onclick="nextPage('scene0')"></div>
+            `;
+            // Clear content in the left container
+            var contentLeft = document.querySelector('.content-left');
+            contentLeft.innerHTML = '';
+            setTimeout(function () {
+                storyContainer.classList.remove('fade-out');
+                storyContainer.classList.add('fade-in');
+            }, 25);
+            }, 100);
+        }
+
+        var nameCharacter;
+
+        function handleCostKeydown(event) {
+            if (event.key === 'Enter') {
+                const inputElement = document.querySelector('.js-name-input');
+                nameCharacter = inputElement.value;
+                nextPage('scene1');
+            }
+        }
+
+        
+
+        function nextPage(page) {
+            var storyContainer = document.getElementById('story');
+            storyContainer.classList.add('fade-out');            
+            setTimeout(function () {
+            switch (page) {
+                case 'scene0':
+                    storyContainer.innerHTML = `
+                        <img loading="lazy" class="scene0-image object-cover object-left" src="./images/scene0.png">
+                        <input class="js-name-input scene1-input" placeholder="กรอกชื่อของคุณ" onkeydown="handleCostKeydown(event);">
+                        <button class="scene1-button" onclick="
+                        const inputElement = document.querySelector('.js-name-input');
+                        nameCharacter = inputElement.value;
+
+                        if (resilienceValue <= 0) {
+                        nextPage('zeroResilience');
+                        }
+                        
+                        if (friendlyValue <= 0) {
+                            nextPage('zeroFriendly');
+                            
+                        }
+
+                        nextPage('scene1');
+                        ">ยืนยันการลงทะเบียน</button>
+                    `;
+                    updateFriendlyValue(0);
+                    updateResilienceValue(0);
+                    // <p class="animate-pulse" style="font-size: 20px; color: black; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                    //     <div class="full-click" onclick="nextPage('scene1')"></div>
+                    break;
+
+                case 'scene1':
+                    var scene2Content = `
+                        <img loading="lazy" class="scene1-image" src="./images/scene1.PNG">
+                        <p id="scene2-text" class="scene2Text">คุณเป็นนักเรียนใหม่ของโรงเรียนในปีการศึกษานี้</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['เป็นเด็กใหม่ธรรมดา ๆ คนหนึ่งเช่นเดียวกับนักเรียนใหม่คนอื่น เพียงแต่…', 'การก้าวเข้ามาในโรงเรียนนี้', 'คุณมาพร้อมกับค่าความแข็งแรงทางจิตใจที่ 3 คะแนน', 'และค่าความเป็นมิตรจากเพื่อนที่ 5 คะแนน', 'คิดก่อนตัดสินใจให้ดีเพราะคะแนนเหล่านี้มีผลต่อผลลัพธ์ปลายสุดของชีวิต'], 'scene2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene2Content;
+                    break;
+
+                case 'scene2':
+                    var scene2Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s2.png">
+                        <p id="scene2-text" class="scene2Text"> ??? : หวัดดี ! นักเรียนใหม่ใช่มะ ? เราชื่อ A นะ อาจารย์บอกให้เราดูแลแกอะ</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ : อ่า หวัดดี เรา ${nameCharacter}', 'A: โอเค ${nameCharacter} งั้นเดี๋ยวเราพาไปเดินดูรอบ ๆ โรงเรียนนะ', 'คุณ : ได้ ๆ'], 'scene3')"></div>
+                    `;
+                    storyContainer.innerHTML = scene2Content;
+                    break;
+
+                
+                case 'scene3':
+                    var scene3Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s3.png">
+                        <p id="scene2-text" class="scene2Text">A พาคุณเดินชมทั่วโรงเรียน สองข้างทางเต็มไปด้วยผู้คนขวักไขว่เดินสวนกันไปทั่ว</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['และคนเหล่านั้นต่างแต่งกายด้วยเครื่องประดับที่หรูหรามั่นใจสมกับเป็นนักเรียนโรงเรียนนานาชาติอันดับต้น ๆ', 'คุณ [ไม่เห็นคนธรรมดาเลยแฮะ]', 'คุณ : ที่นี่มีแต่เด็กบ้านรวยเลยเนอะ', 'A : ก็ใช่ไง โรงเรียนนี้มันโรงเรียนนานาชาติค่าเทอมโคตรแพง เด็กก็ต้องไฮโซตาม', 'แต่ก็อย่างที่ ${nameCharacter} รู้ มันก็มีพวกนักเรียนทุนเหมือนกัน ที่ผอ.จะรับแค่ 10 คนต่อปีหน่ะ'], 'scene4')"></div>
+                    `;
+
+                    storyContainer.innerHTML = scene3Content;
+                    break;
+
+                case 'scene4':
+                    var scene4Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s4.png">
+                        <p id="scene2-text" class="scene2Text">A พาคุณเดินชมจนกระทั่งมาถึงท้ายโรงเรียน ที่แห่งนี้มีตึกเก่า ๆ ตึกหนึ่งตั้งอยู่ซึ่งดูท่าจะร้างมาเป็นเวลานานแล้ว</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ [บรรยากาศวังเวงชะมัด]', 'A : เดินเพลินเลยแฮะ มาถึงตึกเก่าจนได้', 'A : ที่นี่ก็คือตึกเก่าน่ะ เป็นตึกที่สร้างมาตั้งแต่โรงเรียนเพิ่งสร้าง และก็ปิดใช้งานไปหลายปีแล้ว ซึ่งก็ไม่มีใครมากันหรอกนะ นอกจาก…', 'คุณ : นอกจาก ?', 'A : ไม่มีอะไรหรอก ${nameCharacter} ไม่ต้องสนใจหรอกนะ', 'คุณ [นอกจากอะไรกัน ?]', 'A : นี่ก็จะได้เวลาเรียนแล้ว ไปเรียนกันเถอะนะ'], 'scene5')"></div>
+                    `;
+
+                    storyContainer.innerHTML = scene4Content;
+                    break;
+
+                case 'scene5':
+                    var scene5Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s5.png">
+                        <p id="scene2-text" class="scene2Text">คุณได้ถูกจัดให้นั่งเรียนข้าง A อย่างที่คิดเอาไว้ การเรียนการสอนดำเนินไปอย่างราบรื่น</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['และคุณก็สามารถเข้าใจเนื้อหาบทเรียนได้อย่างง่ายดาย จนกระทั่งถึงเวลาพัก คนมากมายก็เริ่มเข้ามารุมล้อมคุณ'], 'scene6')"></div>
+                    `;
+
+                    storyContainer.innerHTML = scene5Content;
+                    break;
+
+                case 'scene6':
+                    var scene6Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s6.png">
+                        <p id="scene2-text" class="scene2Text">??? : หวัดดี แกย้ายมาจากโรงเรียนไหนเหรอ ?</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ : อ๋อ จาก xxx น่ะ', '??? : โห โรงเรียนคุณหนูเลยนี่ แล้วทำไมถึงย้ายมาล่ะ ?', 'คุณ : ก็…', 'คุณ [ไม่อยากจะเล่าเลยแฮะ]'], 'scene6-2')"></div>
+                    `;
+
+                    storyContainer.innerHTML = scene6Content;
+                    break;
+
+                case 'scene6-2':
+                    var scene6n2Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s6.png">
+                        <p id="scene2-text" class="scene2Text">คุณจึงเลือกที่จะตอบกลับไปว่า</p>
+                        <div class="button-container">
+                            <button style="flex: 1;" onclick="nextPage('scene6-3')">ไม่ตอบได้มั้ย</button>
+                            <button style="flex: 2;" onclick="nextPage('scene6-4')">อยากรู้ไปทำไมเนี่ย</button>
+                            <button style="flex: 1;" onclick="nextPage('scene6-5')">เงียบ</button>
+                        </div>
+                    `;
+
+                    storyContainer.innerHTML = scene6n2Content;
+                    break;
+
+                case 'scene6-3':
+                    var scene6Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s6.png">
+                        <p id="scene2-text" class="scene2Text">-1 ค่าความเป็นมิตร</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['เมื่อเพื่อนในห้องได้ยินคำที่คุณตอบออกมา ทุกคนก็แสดงที่สีหน้ายอมรับได้ออกมา', '??? : ไม่เป็นไร ๆ ถ้าไม่สบายใจก็ไม่ต้องตอบก็ได้', 'คุณ [นั่นสินะ ถ้าเราไม่สบายใจ…ก็ไม่ต้องตอบก็ได้นี่นา]', '+ 1 ค่าความแข็งแรงทางจิตใจ'], 'scene6-5')"></div>
+                    `;
+                    updateFriendlyValue(-1);
+                    updateResilienceValue(1);
+                    storyContainer.innerHTML = scene6Content;
+                    break;
+
+                case 'scene6-4':
+                    var scene6Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s6.png">
+                        <p id="scene2-text" class="scene2Text">-2 ค่าความเป็นมิตร</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['เพื่อนในห้องหน้าเสียทันทีที่ได้ยินคุณตอบกลับมาเช่นนั้น แววตาและท่าทางที่ทำให้คุณรู้สึกแปลกแยกอย่างคุ้นเคย', 'คุณ [ไม่ชอบความรู้สึกแบบนี้เลย]', '-1 ค่าความแข็งแรงทางจิตใจ'], 'scene6-5')"></div>
+                    `;
+                    updateFriendlyValue(-2);
+                    updateResilienceValue(-1);
+                    storyContainer.innerHTML = scene6Content;
+                    break;
+
+                case 'scene6-5':
+                    var scene6Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s6.png">
+                        <p id="scene2-text" class="scene2Text">A : พอได้แล้วน่า จะถามซอกแซกทำไมนัก เห็นมั้ยว่า ${nameCharacter} เค้าอึดอัดหมดแล้ว</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['??? : เอ่อ เราขอโทษนะ ${nameCharacter} เราไม่ได้ตั้งใจ', 'คุณ : ไม่เป็นไร ๆ','เสียงไลน์ดังขึ้นจากโทรศัพท์ของทุกคน แล้วทุกคนก็ก้มลงไปมอง', 'คุณ : เอ่อ เกิดอะไรขึ้นเหรอ ?', '??? : ไม่มีอะไรหรอก ๆ', 'A : ไลน์รวมโรงเรียนน่ะ เดี๋ยวเราเชิญ ${nameCharacter} เข้าเลยนะ', 'คุณ : อ๋อ ๆ โอเค', 'ทันทีที่คุณกดเข้าแชทรวมโรงเรียน ก็เกิดแจ้งเตือนและข้อความมากมายดังขึ้นมาแชทนั้น '], 'scene7')"></div>
+                    `;
+                    storyContainer.innerHTML = scene6Content;
+                    break;
+
+                case 'scene7':
+                    var scene7Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s7.png">
+                        <p id="scene2-text" class="scene3Text"></p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', [], 'scene8')"></div>
+                    `;
+                    storyContainer.innerHTML = scene7Content;
+                    break;
+                
+                case 'scene8':
+                    var scene8Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s8.png">
+                        <p id="scene2-text" class="scene2Text">เมื่อคุณเงยหน้าขึ้นมา คนมากมายก็หายไปจากโต๊ะของคุณแล้ว และดูท่าก็คงจะเดินทางไปที่ตึกเก่าตามที่คนชื่อ C พิมพ์บอกมา</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ [หรือที่ A พูดว่านอกจากอะไรสักอย่าง… หรือจะหมายถึงนอกจากกรณีนี้ ?]'], 'scene9')"></div>
+                    `;
+                    storyContainer.innerHTML = scene8Content;
+                    break;
+
+                case 'scene9':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s9.png">
+                        <p id="scene2-text" class="scene2Text">A : เอาไง ${nameCharacter} จะตามไปดูที่ตึกเก่ามั้ย หมายถึงถ้า ${nameCharacter} รับเรื่องแบบนี้ได้น่ะนะ</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ : เรื่องแบบนี้ ?', 'A : ลองไปดูมั้ยล่ะ จะได้รู้ว่าเรื่องแบบไหน', 'คุณ : แล้ว A ไม่ไปเหรอ ?', 'A : เบื่อแล้วน่ะ ไม่รู้จะไปอีกทำไม'], 'scene9-2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene9-2':
+                    var scene9n2Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s9.png">
+                        <p id="scene2-text" class="scene2Text">คุณจะตามไปดูที่ตึกเก่าหรือไม่ ?</p>
+                        <div class="button-container">
+                            <button style="flex: 2;" onclick="nextPage('scene10')">ตามไป ของแบบนี้ต้องไปดูเอง</button>
+                            <button style="flex: 1;" onclick="nextPage('scene15')">ไม่ดีกว่า ดูอันตราย</button>
+                        </div>
+                    `;
+                    storyContainer.innerHTML = scene9n2Content;
+                    break;
+
+                case 'scene10':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s10.png">
+                        <p id="scene2-text" class="scene2Text">คุณตามไปดูที่ตึกเก่า ซึ่งหาทางไปได้ไม่ยากเลยเนื่องจากนักเรียนมากมายในโรงเรียนกำลังมุ่งหน้าไปที่นั่น</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['และในบรรดาห้องเรียนมากมายของตึกเก่า ก็มีเพียงห้องเดียวเท่านั้นที่ทุกคนมุ่งหน้าไป คุณเงยหน้าขึ้นมองป้ายห้องที่เก่าจนตัวอักษรหลุดออกไปบางส่วน'], 'scene11')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene11':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s11.png">
+                        <p id="scene2-text" class="scene2Text">คุณ [ห้องประชุมงั้นเหรอ…]</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['??? : โอ้ย จะเข้าไม่เข้าเนี่ย จะเข้าก็อย่ามายืนเกะกะ'], 'scene11-2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene11-2':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s11.png">
+                        <p id="scene2-text" class="scene2Text">คุณจะตอบคนแปลกหน้าคนนี้ว่าอย่างไร?</p>
+                        <div class="button-container">
+                            <button style="flex: 1;" onclick="nextPage('scene11-3')">เถียงกลับ</button>
+                            <button style="flex: 1;" onclick="nextPage('scene11-4')">หลีกทางให้ </button>
+                        </div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene11-3':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s11.png">
+                        <p id="scene2-text" class="scene2Text">-1 ค่าความเป็นมิตร</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณรีบเดินเข้าห้องประชุมอย่างรวดเร็ว'], 'scene12')"></div>
+                    `;
+                    updateFriendlyValue(-1);
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene11-4':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s11.png">
+                        <p id="scene2-text" class="scene2Text">คุณรีบเดินเข้าห้องประชุมอย่างรวดเร็ว</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', [], 'scene12')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene12':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s12.png">
+                        <p id="scene2-text" class="scene2Text">คนเต็มไปหมดและกำลังล้อมเป็นวงกลมรอบคนหนึ่งคนอยู่ คนคนนั้นมีสภาพที่เปียกโชก</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['บนพื้นมีน้ำสีเทาเจิ่งนองอยู่ ผมกระเซอะกระเซิงและท่าทางเปี่ยมไปด้วยความหวาดกลัว','คุณ [นี่มันเรื่องอะไรกัน !?]', 'คุณ : เรื่องบ้าอะไรวะเนี่ย'], 'scene13')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene13':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s13.png">
+                        <p id="scene2-text" class="scene2Text">??? : เด็กใหม่ล่ะสิ เพิ่งเคยเจอเรื่องแบบนี้รึไง</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ : เรื่องแบบนี้…มันปกติรึไง', '??? : ที่อื่นน่ะไม่รู้หรอกนะ แต่ที่นี่ มันคือเรื่องปกติ', 'คุณ [นี่มันนักเรียนด้วยกันนะ…]', '??? : ถ้าไม่พอใจ…จะเข้าไปห้ามก็ได้นะ', '??? : แต่ทำแบบนั้นอาจจะโดน C หมายหัวไปด้วยอีกคน ไม่มีใครเขาอยากเข้าไปช่วยกันหรอก', 'คุณ : C …เค้าเป็นใครน่ะ ?', '??? : C ห้อง 2 คุณชายคนนึงที่มีอำนาจมากที่สุดของโรงเรียนน่ะ ทายาทเศรษฐีรุ่นสาม', '??? : พ่อแม่เป็นเจ้าของธุรกิจใหญ่ที่แต่งงานทางการเมืองกัน', '??? : มีพี่สุดเพอร์เฟคสองคน แล้วตัวเองก็เป็นน้องเล็ก คงโดนกดดันมาเยอะแหละ', 'คุณ [โดนกดดันยังไงแต่มาทำกับคนอื่นแบบนี้มันก็ไม่ใช่นะ]', '??? : เพื่อนสนิททั้งสองคนของ B ก็น่ากลัว D ทั้งฉลาดทั้งเจ้าเล่ห์', '??? : คิดแผนอะไรร้าย ๆ ได้หมด ส่วน B ก็หัวรุนแรง นิสัยนักเลง ไม่กลัวใครเพราะมี C คอยหนุนหลังนั่นแหละ', '??? : แต่ไอ้ที่กองอยู่บนพื้นน่ะ ก็สมควรกลัวล่ะ'], 'scene14')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene14':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s14.png">
+                        <p id="scene2-text" class="scene2Text">คุณเดินกลับห้องเรียนมาและเจอเข้ากับ A พอดี A แสดงสีหน้ายิ้มแย้มออกมาราวกับสิ่งที่เกิดขึ้นไม่ใช่เรื่องแปลก</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['A : เจอมาแล้วล่ะสิ', 'คุณ : ใช่…', 'คุณ : กับที่นี่ มันเกิดขึ้นเป็นเรื่องปกติเหรอ…', 'A : ใช่ แต่มันเริ่มรุนแรงขึ้นตอนที่ C เข้ามาเรียนที่นี่', 'คุณ : ที่นี่คนบ้านรวยก็ตั้งเยอะ ทำไมทุกคนถึงเชื่อฟัง C กันล่ะ', 'A : เพราะ C ไม่ใช่แค่คนรวยธรรมดาน่ะสิ', 'A : ถ้าที่นี่เป็นโรงเรียนสำหรับชนชั้นสูง C ก็คือคนที่อยู่สูงเกินกว่าที่จะใช้คำว่าชนชั้นสูง','A : ไม่มีใครขัดใจ C ได้หรอก ไม่มีใครอยากลองด้วย', 'คุณ [ก็แปลว่าไม่ว่ายังไงก็ไม่ควรเข้าไปยุ่งกับคนคนนั้นสินะ]', 'คุณคิดไว้ในใจ ก่อนที่อาจารย์จะเดินเข้ามาและเริ่มคาบเรียนต่อไป'], 'scene18')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene15':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s15.png">
+                        <p id="scene2-text" class="scene2Text">คุณปฏิเสธคำเชิญชวนของ A แต่ A ก็ไม่ได้ทำเหมือนมันเป็นเรื่องใหญ่โตอะไร</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['และนั่นก็ทำให้คุณเลือกที่จะละวางความสงสัยและเดินไปทานอาหารที่โรงอาหารตามปกติ', 'โรงอาหารในตอนนี้มีผู้คนบางเบาผิดกับเวลาพักเที่ยง', 'ซึ่งคุณก็คาดเดาได้ว่ามันคงเกี่ยวกับเรื่องที่ตึกเก่าอย่างแน่นอน', 'และนั่นก็ยิ่งทำให้คุณสงสัยว่าเรื่องที่ตึกเก่ามันคือเรื่องอะไรกันแน่', 'ทำไมนักเรียนมากมายถึงเลือกที่จะทิ้งการกินอาหารและไปที่ตึกเก่า', 'คุณ [เรื่องสนุกที่คนชื่อ B พูดถึงคือเรื่องอะไรกันแน่ ?]', '??? : ทำไมไม่ไปตึกเก่าล่ะ ?', 'คุณ : เห้ย ! ตกใจหมด ! เธอเป็นใครเนี่ย !?', 'D : ฉันชื่อ D อยู่ห้อง 2 ทำไมเธอไม่ไปตึกเก่าล่ะ ? คนเขาก็ไปกันหมด', 'คุณ [แปลกคน ทำไมถึงมาถามแบบนี้ล่ะ การไม่ไปตึกเก่ามันแปลกขนาดนั้นเลยเหรอ ?]'], 'scene15-2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene15-2':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s15.png">
+                        <p id="scene2-text" class="scene2Text">คุณจะตอบคนแปลกหน้าคนนี้ว่าอย่างไร?</p>
+                        <div class="button-container">
+                            <button style="flex: 1;" onclick="nextPage('scene15-3')">เธอจะรู้ไปทำไมล่ะ</button>
+                            <button style="flex: 1;" onclick="nextPage('scene15-4')">ก็...มันดูอันตรายนี่</button>
+                            <button style="flex: 1;" onclick="nextPage('scene15-5')">ก็แค่ไม่อยากไปดูน่ะ</button>
+                        </div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+                
+                case 'scene15-3':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s15.png">
+                        <p id="scene2-text" class="scene2Text">-2 ค่าความเป็นมิตรจากเพื่อน</p>
+                        <p class="animate-pulse" style="font-size: 20px; color:#FFD42B; position: fixed; bottom: 10%; left: 50%; transform: translate(-50%, -50%);">กดหน้าจอเพื่อไปต่อ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['แววตาของ D เปลี่ยนไปในทันที และดูอันตรายกว่าที่คุณเคยเห็นที่ไหน ราวกับผู้พิพากษาที่กำลังตัดสินความเป็นความตายของจำเลย', 'คุณ [น่ากลัว น่ากลัวเกินไป]', 'มันช่างคุ้นเคย คุ้นเคยราวกับฝันร้ายที่เคยครอบงำเขาอยู่', '-1 ค่าความแข็งแรงทางจิตใจ'], 'scene15-6')"></div>
+                    `;
+                    updateFriendlyValue(-2);
+                    updateResilienceValue(-1);
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene15-4':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s15.png">
+                        <p id="scene2-text" class="scene2Text">+2 ค่าความเป็นมิตร</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', [], 'scene15-6')"></div>
+                    `;
+                    updateFriendlyValue(+2);
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene15-5':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s15.png">
+                        <p id="scene2-text" class="scene2Text">คุณตอบปัดออกไป ก่อนที่จะนึกขึ้นมาได้อย่างหนึ่ง</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณรู้จักแสดงความคิดเห็นของตัวเองขึ้นมาบ้างแล้ว', 'คุณไม่อ่อนแอเหมือนแต่ก่อนแล้ว', '+1 ค่าความแข็งแรงทางจิตใจ'], 'scene15-6')"></div>
+                    `;
+                    updateResilienceValue(1);
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene15-6':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s15.png">
+                        <p id="scene2-text" class="scene2Text">D ยิ้มออกมาเมื่อได้ยินเช่นนั้น แต่รอยยิ้มนั้นของ D ทำให้คุณรู้สึกแปลก ๆ ขึ้นมาอย่างหาสาเหตุไม่ได้</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['D : เธอชื่ออะไร อยู่ห้องไหนล่ะ', 'คุณ : ${nameCharacter} อยู่ห้อง 4 น่ะ', 'D : หื้ม เด็กใหม่เหรอ ?', 'คุณ : เธอรู้ได้ยังไงน่ะ ?', 'D : ฉันรู้จักทุกคนของห้อง 4 นั่นแหละ', 'D : สนใจเธอซะแล้วสิ ยินดีที่ได้รู้จักนะ ', 'คุณ : ยินดี…ที่ได้รู้จักเหมือนกัน'], 'scene16')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene16':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s16.png">
+                        <p id="scene2-text" class="scene2Text">D เดินออกไปแล้ว แต่ความรู้สึกแปลก ๆ ก็ยังคงติดอยู่ในใจของคุณ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ [คนคนนี้ดูน่ากลัวชะมัด]'], 'scene17')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene17':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s17.png">
+                        <p id="scene2-text" class="scene3Text">ไลน์รวมของโรงเรียนเด้งขึ้นอีกครั้ง และภาพที่ถูกส่งเข้ามาคือภาพของนักเรียนคนนึงที่เปียกโชกทั้งตัว ผมกระเซิง นั่งอยู่กับพื้น</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ [นี่มันเรื่องอะไรกันเนี่ย !?]', 'คุณคิดในใจ ก่อนที่จะรีบเดินกลับห้องเรียนไป'], 'scene18')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene18':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s18.png">
+                        <p id="scene2-text" class="scene2Text">การเรียนการสอนตลอดช่วงเย็นดำเนินไปอย่างปกติสุข และช่วงหลังเลิกเรียนก็ไม่ได้มีกิจกรรมอะไร</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ดังนั้นแล้วสิ่งที่คุณจะทำก็คือการกลับบ้าน คุณกลับมายังบ้านของคุณและอาบน้ำเตรียมตัวนอน แต่ก่อนจะนอนคุณก็ได้คิดอะไรไปเรื่อยเปื่อย', 'คุณ [คนที่โรงเรียนนี้ดูแปลก ๆ กันไปหมด]', 'คุณ [ดู…น่ากลัวกว่าพวกที่โรงเรียนเก่าอีก]', 'คุณผล็อยหลับไป'], 'scene19')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene19':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s19.png">
+                        <p id="scene2-text" class="scene2Text">??? ในความฝัน : จำไว้นะ ${nameCharacter} ไม่ว่ายังไงแกก็ยังเป็นขยะสังคมอยู่วันยันค่ำ แกจะหนีไปที่ไหน แกก็เป็นได้แค่หมาตัวนึง</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ [ขยะสังคมงั้นเหรอ …]', 'คุณ [ไม่ว่าจะหนีไปแค่ไหน เราก็หนีไม่พ้นเลยสินะ]', 'คุณ [ไม่เอาแล้ว ต้องหนีไปยังไง ต้องหนีไปที่ไหนถึงจะพ้น]', 'คุณ [ไม่อยากเจอเรื่องแบบนี้แล้ว]', 'คุณ [ไม่อยากอยู่ต่อแล้ว]'], 'scene20')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene20':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s20.png">
+                        <p id="scene2-text" class="scene2Text">คุณสะดุ้งตื่นจากฝันด้วยเหงื่อที่ทั่วตัว</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณลุกขึ้นนั่งบนเตียงด้วยน้ำตานองหน้าและเหงื่อไหลท่วมจากความหวาดกลัวในอดีตที่มาก่อกวนถึงในฝัน', 'พลางพยายามปลอบตนเองไม่ให้สติเตลิดไปมากกว่านี้', 'คุณ [ไม่เป็นไร ไม่ต้องกลัว]', 'คุณ [เราหนีมาแล้วนี่ หนีมาจากที่นั่นแล้ว]', 'คุณ [แค่ไม่ทำตัวหาเรื่อง เราก็จะไม่เจอเรื่องแบบนั้นแล้ว]', 'คุณ [กับที่นี่…เราควรปลอดภัยได้แล้ว]'], 'scene21')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene21':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s21.png">
+                        <p id="scene2-text" class="scene3Text ">คุณหยิบโทรศัพท์ขึ้นมาและหาอะไรดูเล่นเพื่อสงบจิตสงบใจ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ก่อนที่รายชื่อแนะนำในแอพลิเคชั่นโซเชียลมีเดียจะเด้งขึ้นมา', 'และชื่อเล่นที่ถูกเขียนอยู่บนโปรไฟล์ของคนคนนั้นคือ C คุณ [จะใช่ C เดียวกับคนคนนั้นมั้ยนะ]', 'ด้วยความสงสัย คุณจึงกดเข้าไปดูโปรไฟล์ของคนคนนั้น และปรากฏว่านั่นคือ C เดียวกับ C ที่คุณได้ยินชื่อมาเมื่อกลางวัน', '(ภาพเป็นภาพโปรไฟล์เฟสบุ๊ค เลื่อนไปเจอสเตตัส C โพสต์ว่า ‘น่ารำคาญ ไปตายซะให้หมด’)', 'คุณ [น่ารำคาญงั้นเหรอ… หมายถึงใครกัน]', '(ใต้โพสต์ของ C มี B คอมเมนต์ ‘ซัดมันไปเลยเพื่อน’ กับ D คอมเมนต์ ‘สู้ ๆ นะ’)', 'คุณ [D… D คนนั้นรึเปล่านะ…]', 'คุณกดเข้าไปดูโพสต์ในหน้าโปรไฟล์ของ D แต่ก็ไม่เจออะไร', 'เจอแต่ข้อความแสดงความสนิทสนมระหว่าง B C และ D', 'คุณ [พวกเขาสนิทกันมากจริง ๆ นั่นแหละ]'], 'scene22')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene22':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s23.png">
+                        <p id="scene2-text" class="scene2Text">คุณวางโทรศัพท์แล้วข่มตาหลับเพื่อเข้านอน</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['[เก็บโทรศัพท์ เดินต่อกลับบ้าน]'], 'scene23')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene23':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s23.png">
+                        <p id="scene2-text" class="scene2Text">A : ${nameCharacter} ไปเดินเล่นกันมั้ย เพิ่งมาโรงเรียนได้วันเดียวอยู่เลย ยังสำรวจไม่ทั่วเลยนะ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ : โอเค ไปก็ได้ ๆ'], 'scene24')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene24':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s24.png">
+                        <p id="scene2-text" class="scene2Text">A พาคุณเดินไปเดินมาทั่วโรงเรียน คุณก็เดินตาม A มาเรื่อย ๆ จนสองข้างทางเริ่มร้างผู้คน</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['A : ปกติทางนี้ไม่ค่อยมีใครใช้เดินกัน เพราะมันมีทางเดินที่เพิ่งสร้างขึ้นมาใหม่แล้วลัดกว่าน่ะ', 'คุณพยักหน้ารับคำที่ A บรรยาย ก่อนที่ฝีเท้าของ A จะหยุดลง'], 'scene25')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene25':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s25.png">
+                        <p id="scene2-text" class="scene2Text">คุณ : หยุดทำไมล่ะ ?</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['A : นั่นมัน E', 'A : แปลกจัง ทำไม E มาอยู่ตรงนี้ได้…', 'คุณ : E คือใครน่ะ ? แล้วทำไมมันถึงแปลก', 'A : E คือคนที่โดน C หมายหัว เรียกง่าย ๆ ว่าคนที่โดน C บูลลี่นั่นแหละ', 'ปกติ E จะโดนบังคับให้อยู่กับพวก C B D ตลอดนี่นา', 'คุณมอง E ที่นั่งอยู่กับพื้นด้วยความสงสาร สภาพไม่แตกต่างจากเมื่อวานมากนัก', 'แต่ทันทีที่ดวงตาสีดำสนิทของ E กวาดมามองพวกคุณ คุณก็รู้ได้ในทันที', 'คุณ [คนคนนี้จะไม่ไหวแล้ว]'], 'scene25-2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene25-2':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s25.png">
+                        <p id="scene2-text" class="scene2Text">คุณจะทำยังไงต่อไป ?</p>
+                        <div class="button-container">
+                            <button style="flex: 1;" onclick="nextPage('scene26')">เดินเข้าไปคุยด้วยและหาทางช่วย</button>
+                            <button style="flex: 1;" onclick="nextPage('scene29special')">ทำเมินและหาทางเดินหนีไป</button>
+                        </div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene26':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s26.png">
+                        <p id="scene2-text" class="scene2Text">A : แน่จะนะว่าจะเข้าไปคุยด้วยน่ะ ${nameCharacter} มีโอกาสจะโดน C หมายหัวไปด้วยนะ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ : เขาน่าสงสารเกินไป เราทนเมินไม่ได้หรอก'], 'scene27')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene27':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s27.png">
+                        <p id="scene2-text" class="scene2Text">คุณเดินออกจาก A เพื่อตรงไปยัง E ท่าทางของอีกฝ่ายที่เห็นคุณเดินเข้าไป</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ก็เกิดความหวาดกลัวขึ้นมาอย่างควบคุมไม่ได้', 'คุณนั่งยอง ๆ ลงตรงหน้า E แล้วจึงโบกมือทักทาย', 'คุณ : หวัดดี เราชื่อ ${nameCharacter} นะ E ใช่รึเปล่า', 'คุณ : เราไม่ได้มาร้าย ไม่คิดจะทำร้ายนายด้วย', 'คุณ : นายคุยกับเราหน่อยได้มั้ย ?', '(E พยักหน้า แล้วก็เงยหน้าขึ้นมามองคุณ)', 'คุณชวน E คุยไปเรื่อย ๆ ในขณะที่ A ก็เพียงยืนมองคุณอยู่ห่าง ๆ ด้วยแววตาเป็นห่วง'], 'scene27-2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene27-2':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s27.png">
+                        <p id="scene2-text" class="scene2Text">คุณจะปฏิบัติต่อ E อย่างไร?</p>
+                        <div class="button-container">
+                            <button style="flex: 1;" onclick="nextPage('scene27-3')">ชม</button>
+                            <button style="flex: 1;" onclick="nextPage('scene27-4')">ถามสาเหตุการโดนแกล้ง</button>
+                        </div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene27-3':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s27.png">
+                        <p id="scene2-text" class="scene2Text">+2 ค่าความเป็นมิตร</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['แปลกจริง ก่อนหน้านี้ไม่นานคุณยังเป็นคนที่หวาดกลัวต่อการเข้าสังคมและมีปฏิสัมพันธ์กับคนอื่นอยู่เลย', 'ในตอนนี้คุณอยู่ในสถานะที่สามารถพูดคุยและหาเรื่องชมคนอื่นได้แล้ว คุณเข้มแข็งขึ้นแล้ว', '+1 ค่าความแข็งแรงทางจิตใจ'], 'scene27-5')"></div>
+                    `;
+                    updateFriendlyValue(2);
+                    updateResilienceValue(1);
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene27-4':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s27.png">
+                        <p id="scene2-text" class="scene2Text">คุณชะงักไปเมื่อนึกขึ้นได้ว่าตนทำอะไรลงไป แผลของเหยื่อยังไม่ทันหาย</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณก็ย้ำซ้ำแผลนั้นเข้าไปอีก', 'คุณ [ทำไมเราถึงกลายเป็นเหมือนคนที่ทำร้ายเราในอดีตไปได้นะ]', '-1 ค่าความแข็งแรงทางจิตใจ'], 'scene27-5')"></div>
+                    `;
+                    updateResilienceValue(-1);
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene27-5':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s27.png">
+                        <p id="scene2-text" class="scene2Text">คุณ : แล้วทำไมนายถึงมาอยู่ที่นี่ล่ะ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['E : เราไม่อยากอยู่ห้องน่ะ ที่นั่นมีแต่คนใจร้าย คอยรังแกเรา', 'คุณ : แล้วทำไมนายไม่สู้กลับล่ะ', 'E : แม่เราบอกว่า มาเรียนอย่าสร้างปัญหา ให้ตั้งใจเรียน ใครรังแกอะไรก็ยอม ๆ ไป', 'E : เดี๋ยวเขาก็เบื่อเอง อีกอย่างบ้านเราทำธุรกิจอยู่ในเครือตระกูลนั้น สู้ไม่ไหวหรอก', 'คุณ [มันจะเป็นอย่างนั้นจริง ๆ เหรอ]', 'A : ${nameCharacter} ไปกันได้แล้วนะ', 'คุณ : แปบนึงสิ ยังอยากคุยต่ออยู่เลย', '??? : จะอยากคุยอะไรกันนักเหรอ ?'], 'scene28')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene28':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s28.png">
+                        <p id="scene2-text" class="scene2Text">คุณเงยหน้าขึ้นไปมองต้นเสียง และเจอกันคนสามคนยืนมองคุณกับ E อยู่</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['A : C ! มานี่ทำไมน่ะ !?', 'C : ทำไมจะมาไม่ได้ล่ะ ?', 'คุณ [C งั้นเหรอ แสดงว่าสองคนที่ยืนอยู่ข้าง ๆ ก็คงเป็น B กับ D สินะ]', 'C : ถ้าไม่มาก็คงไม่ได้เห็นว่ามีคนหาเรื่องอีกคนแล้ว ', 'C : หน้าไม่คุ้นเลย เด็กใหม่งั้นเหรอ ', 'A : C เราขอนะ อย่าทำอะไร ${nameCharacter}', 'C : แล้วทำไมฉันต้องทำตามที่เธอขอล่ะ ?', 'C : เด็กใหม่คนนี้นี่เริ่มขัดหูขัดตาฉันขึ้นมาซะแล้ว', 'D : แล้วถ้าเป็นฉันขอล่ะ ?', 'บทสนทนาเงียบไปเมื่อจู่ ๆ D ก็เอ่ยปากพูดออกมา', 'และความเงียบนั่นก็ดำเนินไปครู่หนึ่ง', 'D : ${nameCharacter} เป็นเด็กใหม่ ยังไม่ค่อยรู้เรื่องอะไรหรอก ปล่อยเธอไปเถอะ', 'C : …ก็ได้ อย่าให้ฉันเห็นครั้งต่อไปก็แล้วกัน', 'C เดินออกไป และ A ก็รีบเดินเข้ามาดึงคุณขึ้นในทันที', 'A : รีบไปกันได้แล้ว'], 'scene29')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene29':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s29.png">
+                        <p id="scene2-text" class="scene2Text">คุณเดินตาม A ที่รีบสับเท้าราวกับกำลังหนีอะไรบางอย่างอยู่</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['และเมื่อสองข้างทางเริ่มกลับมาเต็มไปด้วยผู้คน A จึงหยุดเดินและหันกลับมาพูดกับคุณ', 'A : คราวหลังอย่าไปยุ่งกับ E อีกนะ เห็นมั้ยว่าคราวนี้เธอเกือบซวยแล้ว', 'A : ดีนะที่จู่ ๆ D ก็เกิดเห็นใจขึ้นมา', 'คุณ : อืม เข้าใจแล้ว'], 'scene31')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene29special':
+                    var scene9Content = `
+                        <p id="scene2-text" class="scene2Text">คุณแกล้งทำเป็นมองไม่เห็น E และรีบเดินออกจากอาณาบริเวณแถวนั้นโดยทันที</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['แม้ว่าสายตาที่ถูกส่งมายังคุณจะยังคงติดค้างอยู่ในใจก็ตาม', 'แววตาของคนคนนั้นมันกรีดร้องออกมาว่าทรมาน', 'และสิ่งที่คุณทำกลับเป็นการมองข้ามมันไป', 'มันดีแล้วจริงหรือ ?'], 'scene30')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene30':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s30.png">
+                        <p id="scene2-text" class="scene2Text">คุณ : ทำไม E ถึงโดนแกล้งล่ะ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['A : บ้านของ E ทำธุรกิจที่อยู่ภายใต้เครือบริษัทของ C', 'A : และนั่นก็ทำให้บ้านของ E ปลูกฝังลูกตัวเองให้ตามใจ C นิสัยของ E', 'A : ก็อย่างที่ ${nameCharacter} น่าจะเดาออกแหละ เงียบ ๆ ติ๋ม ๆ ไม่สู้คน ก็เลยเป็นเป้าให้โดนรังแก', 'คุณ : น่าสงสาร', 'A : E ก็โดนรังแกหนักอยู่นะ ทั้งโดนปล่อยข่าวลือแย่ ๆ', 'A : โดนกีดกัน โดนทำร้ายร่างกายก็หนักอยู่ ในเน็ตก็มีแต่ข่าวลือร้าย ๆ ของ E เต็มไปหมด', 'A : แต่จะมีใครกล้าทำอะไรล่ะ ?', 'A : ถ้าโดน C หมายหัว ชีวิตในโรงเรียนนี้ก็จบนะ', 'A : เพราะฉะนั้น ${nameCharacter} เองก็อย่าไปยุ่งเลย'], 'scene31')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+                
+                case 'scene31':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s31.png">
+                        <p id="scene2-text" class="scene2Text">พักเที่ยง คุณไปที่โรงอาหารที่เต็มไปด้วยผู้คนมากมายจอแจกัน</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['การหาที่นั่งในโรงอาหารก็เหมือนกับการต่อสู้ในสมรภูมิ', 'ยิ่งกับคนที่เพิ่งมาใหม่อย่างคุณแล้ว', 'จะหาโต๊ะนั่งก็ยิ่งเป็นเรื่องยากเข้าไปอีก', 'คุณกำลังมองซ้ายมองขวาหาที่นั่งอยู่ ขณะนั้นก็มีคนเรียกคุณจากด้านหลัง', '??? : นี่ แกน่ะ'], 'scene32')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene32':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s32.png">
+                        <p id="scene2-text" class="scene2Text">คุณหันไปมองต้นเสียง และพบเข้ากับ C นั่งอยู่ที่โต๊ะอาหารสำหรับสี่คนซึ่งมี B และ D นั่งอยู่ด้วย</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ [C งั้นเหรอ ออร่าคนรวยพุ่งสุด ๆ ไปเลย ส่วน B ก็ดูห้าว ๆ นักเลง ๆ D ก็ดูนิ่ง ๆ ไม่ค่อยพูด]', 'C : นั่งด้วยกันสิ', 'C : D นี่ใช่มะคนที่เธอพูดถึง', 'D : อืม', 'คุณ : เอ่อ… ไม่เป็น-', 'C : นั่ง ซะ'], 'scene33')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene33':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s33.png">
+                        <p id="scene2-text" class="scene2Text">คุณที่ได้ยินคำเช่นนั้นก็นั่งลงที่เก้าอี้ตรงข้าม C และดูท่าว่าท่าทางกังวลของคุณจะไปขัดหูขัดตา B เข้า</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['B : โอ้ย ! จะยุกยิกอะไรนักหนา น่ารำคาญ', 'D : เบา ๆ หน่อย คนมองกันทั้งโรงอาหารแล้ว', 'คุณมอง B กับ D ที่เถียงกันอย่างเงียบ ๆ ก่อนที่ C จะเอ่ยปากแทรกบทของทั้งคู่', 'C : พอทั้งคู่นั่นแหละ', 'C : ฉันสนใจเธอมากกว่า ${nameCharacter} ห้อง 4','คุณ : รู้จักเราด้วยเหรอ', 'C : เธอคิดว่าฉันจะชวนใครที่ไหนก็ไม่รู้มานั่งกินข้าวด้วยรึไง', 'C : คนเรามันก็ต้องสืบหาประวัติดูก่อนสิ', 'คุณ : สืบหาประวัติ ?', 'C : ${nameCharacter} เด็กใหม่ห้อง 4 ที่เพิ่งย้ายมาได้สองวัน ย้ายมาจากโรงเรียน xxx', 'C : ฐานะที่บ้านปานกลางค่อนดี ปัจจุบันนี้สนิทกับ A อยู่', 'B : อื้ม เลือกคบคนได้ดีนี่', 'C : ที่น่าสนใจน่ะไม่ใช่เรื่องนี้หรอก', 'C : รู้มั้ยตอนฉันสืบประวัติเธอ ฉันเจออะไรบ้าง ?', 'คุณนิ่งเงียบเมื่อ C เอ่ยเปิดประเด็นขึ้นเช่นนั้น', 'อีกฝ่ายยกรอยยิ้มขึ้นมา ซึ่งเป็นรอยยิ้มแบบที่คุณเกลียดที่สุด', 'เพราะมันคือรอยยิ้มแบบเดียวกับคนที่สร้างบาดแผลฝังลึกไว้ในใจคุณ', 'C : ประวัติที่โรงเรียนเก่าเธอไม่ค่อยดีเท่าไหร่ ได้ข่าวว่าลาออกเพราะโดนบูลลี่นี่นา', 'C : คนคนนั้นเหรอ ? ฉันก็รู้จักนะ ที่บ้านค่อนข้างสนิทกันด้วย', 'C : ให้ฉันพาเขากลับมาในชีวิตเธออีกครั้งมั้ย ?', 'คุณ [ไม่เอา]', 'คุณ [อย่านะ ได้โปรด]', 'คุณ [อุตส่าห์หนีออกมาได้แล้ว อย่าพาฉันกลับเข้าไปอีกเลยนะ!]'], 'scene33-2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+                
+                case 'scene33-2':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s33.png">
+                        <p id="scene2-text" class="scene2Text">คุณจะตอบกลับ C อย่างไร?</p>
+                        <div class="button-container">
+                            <button style="flex: 1;" onclick="nextPage('scene33-3')">เธอคิดว่าจะขู่ฉันหรอ</button>
+                            <button style="flex: 1;" onclick="nextPage('scene33-4')">เธอจะพูดมันขึ้นมาทำไม</button>
+                            <button style="flex: 1;" onclick="nextPage('scene33-5')">เงียบ</button>
+                        </div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene33-3':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s33.png">
+                        <p id="scene2-text" class="scene2Text">-1 ค่าความเป็นมิตรจากเพื่อน</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณจ้องตา C กลับไปด้วยแววตาแข็งกร้าว พยายามสู้กลับไปด้วยความกล้าทั้งหมด', 'คุณจะไม่ยอมไม่ปกป้องตนเองอีกแล้ว', '+1 ค่าความแข็งแรงทางจิตใจ'], 'scene33-5')"></div>
+                    `;
+                    updateFriendlyValue(-1);
+                    updateResilienceValue(1);
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene33-4':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s33.png">
+                        <p id="scene2-text" class="scene2Text">-1 ค่าความเป็นมิตรจากเพื่อน</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณจ้องตา C กลับไปด้วยแววตาแข็งกร้าว พยายามสู้กลับไปด้วยความกล้าทั้งหมด', 'คุณจะไม่ยอมไม่ปกป้องตนเองอีกแล้ว', '+1 ค่าความแข็งแรงทางจิตใจ'], 'scene33-5')"></div>
+                    `;
+                    updateFriendlyValue(-1);
+                    updateResilienceValue(1);
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene33-5':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s33.png">
+                        <p id="scene2-text" class="scene2Text">C : ฉันจะตีความว่าเธอไม่เอาได้ใช่มั้ยนะ</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['C : งั้นฉันยื่นข้อเสนอ', 'C : หลังจากนี้มาอยู่กับพวกฉัน', 'B : แค่จะชวนเข้ากลุ่มทำไมต้องข่มขู่กันด้วย', 'C : หุบปากไปเลยยัยบ้า', 'C หันไปกึ่งพูดกึ่งกระซิบกับ B และคุณที่นั่งอยู่ตรงนั้นก็ได้เพียงแต่นิ่งเงียบ', 'คุณ [ไม่หรอก ไม่ใช่แค่ข่มขู่เพราะอยากให้เข้ากลุ่ม]', 'คุณ [C น่ะไม่ได้อยากได้ฉันเข้ากลุ่มหรอก]', 'คุณ [ทั้งหมดที่ขู่ไปก็เพื่อกดฉันให้จม เพื่อบอกว่าแค่ได้เข้ากลุ่ม อย่าคิดว่าอยู่ระดับเดียวกัน]', 'คุณ [คงต้องเข้ากลุ่มสินะ]', 'คุณที่ไม่มีหนทางปฏิเสธก็ทำได้เพียงเข้ากลุ่มไป'], 'scene34')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene34':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s34.png">
+                        <p id="scene2-text" class="scene2Text">เวลาผ่านไปหลายวันหลังจากที่คุณได้เข้ากลุ่ม ชีวิตประจำวันของคุณดำเนินไปอย่างเรียบง่าย</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ทุกอย่างง่ายดายไปหมดเมื่อคุณได้รับการยอมรับให้เป็นหนึ่งในสมาชิกกลุ่มของ C ', 'ทุกคนในโรงเรียนเกรงใจคุณอย่างที่ไม่เคยเป็นมาก่อน', 'และเมื่อ C พิจารณาแล้วว่าการรับคุณเข้ามาในกลุ่มไม่ได้สร้างผลเสียหายให้กลุ่มแต่อย่างใด', 'คุณจึงเริ่มมีสิทธิมีเสียงและได้รับรู้เรื่องราวต่าง ๆ มากยิ่งขึ้น'], 'scene35')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene35':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s35.png">
+                        <p id="scene2-text" class="scene2Text">เวลาผ่านไปหลายวันหลังจากที่คุณได้เข้ากลุ่ม ชีวิตประจำวันของคุณดำเนินไปอย่างเรียบง่าย</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['B : เบื่อจังเลยอ่า ช่วงนี้ไม่มีอะไรสนุก ๆ ทำเลย', 'คุณ : ช่วงนี้ที่ว่าคือสองสามวันมานี้เองนะ', 'B : แหม ${nameCharacter} คนเราต้องมีเรื่องสนุกเข้ามาตลอดเวลาต่างหาก', 'คุณส่ายหน้าเบา ๆ ด้วยความเหนื่อยใจจะเถียง', 'ก่อนที่ในสายตาจะมองเห็นใครคนหนึ่งเดินผ่านกลุ่มของพวกคุณไป', 'คุณ [E งั้นเหรอ ? แย่แล้ว!!!]', 'และสัญญาณอันตรายก็ดังขึ้นเมื่อคุณมองเห็นรอยยิ้มของ B', 'D : เอาอีกแล้วเหรอ', 'B : แหม ชีวิตของคนเรามันก็ต้องหาเรื่องสนุกเข้ามาสิ ใช่มั้ย C', 'C : จะทำอะไรก็ตามใจเธอเลยเถอะ'], 'scene36')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+                
+                case 'scene36':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s36.png">
+                        <p id="scene2-text" class="scene3Text">B จึงหยิบโทรศัพท์ขึ้นมาและพิมพ์อะไรสักอย่างลงไป</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ก่อนที่แชทกลุ่มโรงเรียนจะดังขึ้น'], 'scene37')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene37':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s37.png">
+                        <p id="scene2-text" class="scene2Text">ทันใดนั้น ก็ราวกับทั้งโรงเรียนไฟไหม้</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ทุกคนลุกฮือขึ้นมาและไล่จับตัว E เพื่อนำไปยังตึกเก่าทันที', 'คุณ [ความสงบสุขในโรงเรียนนี้มันไม่มีจริง ๆ สินะ]', 'B : C ไปแน่นอน D คงไม่ไปอยู่แล้ว… ${nameCharacter} จะไปด้วยกันมั้ย'], 'scene37-2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+
+                case 'scene37-2':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s37.png">
+                        <p id="scene2-text" class="scene2Text">คุณจะไปที่ตึกเก่ากับ B หรือไม่ ?</p>
+                        <div class="button-container">
+                            <button style="flex: 1;" onclick="nextPage('scene38')">ไป</button>
+                            <button style="flex: 1;" onclick="nextPage('scene39')">ไม่ไป</button>
+                        </div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene38':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s38.png">
+                        <p id="scene2-text" class="scene2Text">คุณตาม B และ C มาถึงตึกเก่า ด้วยความคิดที่อยากจะลองดูให้เต็มตาสักครั้ง</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['และสิ่งที่คุณเห็นก็ไม่ต่างจากจินตนาการ ความรุนแรงที่เกิดขึ้นท่ามกลางเสียงหัวเราะของนักเรียนทุกคน', 'เสียงกรีดร้องและน้ำตาของผู้ถูกกระทำ ทุกอย่างมันช่างบีบคั้นให้คุณต้องทำอะไรสักอย่าง', 'มันดีแล้วจริง ๆ หรือ ? การที่คุณได้กลายเป็นพวกเดียวกับที่รังแกคุณไปเสียแล้วน่ะ ?', 'คุณได้กลายเป็นคนประเภทที่คุณสาปแช่งและเกลียดชังในอดีตไปเสียแล้ว', 'มันดีแล้วจริง ๆ หรือ ?'], 'scene40')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene39':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s39.png">
+                        <p id="scene2-text" class="scene2Text">คุณปฏิเสธการไปที่ตึกเก่ากับ B และ C</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['นั่นจึงทำให้เหลือคุณอยู่กับ D สองคน', 'D : ทำไมไม่ไป ?', 'คุณ : แล้วทำไมเธอไม่ไป', 'D : ไม่อยากไป ไม่ได้สนุกกับอะไรแบบนั้น', 'คุณ [แล้วมาอยู่กับ C ทำไม ?]', 'D : แล้วมาอยู่กับ C ทำไม ? ใช่มั้ย ?', 'คุณสะดุ้งเมื่อ D พูดราวกับอ่านใจของคุณได้', 'D ที่เห็นปฏิกิริยาของคุณเป็นเช่นนั้นก็เดาทุกอย่างออก', 'D : เผื่อเธอไม่รู้นะ ${nameCharacter} ฉันเป็นนักเรียนทุน 1 ใน 10 ของสายชั้นนี้นี่แหละ', 'คุณ : นักเรียนทุน !?', 'D : บ้านฉันไม่ได้รวย เพราะฉะนั้นถ้าเกิดเรื่อง ฉันก็ไม่มีใครหนุนหลังหรอกนะ', 'คุณ : แล้วอยู่กับ C ทำไม…', 'D : อยู่กับ C มีอะไรไม่ดี รายนั้นบ้านรวย ฉันก็ได้ผลพลอยได้ไปด้วย', 'D : อีกอย่าง…ข้อสอบเก่าก็มีตั้งมากมาย ไม่ต้องเสียเวลาไปอ่านแบบหว่านแห มีแต่ได้กับได้', 'D : ถ้าฉันไม่ทำแบบนี้ เกรดออกมาแย่ก็โดนด่าอีก', 'D : ส่วน B ก็แค่อันธพาลบ้านรวยคนนึง แต่ไม่รวยพอจะปิดปากอาจารย์ได้ทุกครั้ง', 'D : รายนั้นต้องการแบ็คก็เลยมาหา C', 'D : C ก็ไม่อยากลงมือเอง ก็แค่นั่งเฉย ๆ', 'D : ดูคนโดนรังแกแล้วก็เอาเงินปิดปากอาจารย์ให้ B ก็เท่านั้น', 'D : แต่พูด ๆ ไปแล้ว… มันก็มีส่วนที่เธอกับ B คล้ายกันอยู่นะ', 'คุณ : ส่วนไหน…', 'D ไม่ได้ตอบคำถามของคุณ เธอเพียงยิ้มบาง ๆ ตอบกลับมาเท่านั้น', 'D : แล้วทำไมเธอถึงมาอยู่กับ C ล่ะ ? ความจริงแล้วอยู่กับ A เหมือนเดิมจะเซฟกว่านะ', 'คุณ [อยู่กับ A เหมือนเดิมจะเซฟกว่า…หมายความว่าอะไร ?]', 'D : A เคยเป็นพวกของเรา จนกระทั่งวันนึงที่ A ออกจากแก๊งค์ไป', 'คุณ : ว่าไงนะ !?', 'D : อืม และเพราะ A เคยเป็นพวกของเรา นักเรียนในโรงเรียนนี้ก็ยังเกรงใจ A กันอยู่', 'D : ฉันตอบสิ่งที่เธอสงสัยแล้ว เธอตอบคำถามฉันด้วย ทำไมถึงเลือกที่จะอยู่กับ C ล่ะ', 'คุณ : ก็แค่… ไม่อยากโดนรังแกอีกต่อไปแล้วน่ะ', 'D : นั่นไง เหมือนกันจริง ๆ ด้วย', 'D : เหมือน B ไม่มีผิดเลย', 'D พูดกับคุณ ก่อนที่จะเดินจากไป'], 'scene54')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+                
+
+                case 'scene40':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s40.png">
+                        <p id="scene2-text" class="scene2Text">B : มานี่สิ ${nameCharacter}</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['B : ฉันยังไม่เคยเห็นเธอทำอะไรเลย', 'หากคุณเข้าร่วมกับ B สถานะทางสังคมของคุณในโรงเรียนนี้ก็จะมั่นคง', 'ไ่ม่มีใครกล้าทำร้ายคุณ คุณจะไม่เจ็บปวดเฉกเช่นในอดีต', 'คุณจะกลายเป็นหนึ่งในพวกของ C อย่างเต็มตัว', 'แต่หากคุณให้ศีลธรรมนำทาง คุณก็ไม่ต้องจมอยู่กับความรู้สึกผิดที่ไม่ช่วยเหลือผู้ถูกกระทำเช่นตัวเองทั้งที่มีอำนาจพอจะช่วยได้', 'คุณจะไม่ต้องจมอยู่กับความรู้สึกเกลียดชังตนเองที่เปลี่ยนไปเมื่ออำนาจเข้าครอบงำ'], 'scene40-2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene40-2':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s40.png">
+                        <p id="scene2-text" class="scene2Text">ถ้าเป็นเช่นนี้ คุณจะทำอย่างไร ?</p>
+                        <div class="button-container">
+                            <button style="flex: 1;" onclick="nextPage('scene41')">เข้าไปร่วมแจมกับ B</button>
+                            <button style="flex: 1;" onclick="nextPage('scene45')">ปฏิเสธและเข้าไปช่วยเหลือ E</button>
+                            <button style="flex: 1;" onclick="nextPage('scene50')">เดินหนีออกมา</button>
+                        </div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+                
+                case 'scene41':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s41.png">
+                        <p id="scene2-text" class="scene2Text">คุณเดินเข้าไปกลางวง นักเรียนมากมายสองข้างทางต่างหลีกให้คุณราวกับโมเสกแหวกน้ำทะเล</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['เสียงฝีเท้าของคุณดังก้องห้องประชุมของตึกเก่าที่ร้างการใช้งาน ไม่มีใครกล้าส่งเสียงแม้แต่จะหายใจ', 'ก้มมอง E ที่กำลังเงยหน้าขึ้นมาสบตากับคุณเช่นกัน', 'แววตาของ E ที่เคยร้องขอความช่วยเหลือยามคุณเห็นเมื่อครั้งก่อน', 'กลายเป็นแววตาที่เต็มไปด้วยความเกลียดชัง', 'คุณกลายเป็นแบบนี้ได้ยังไงกัน ?'], 'scene42')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene42':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s42.png">
+                        <p id="scene2-text" class="scene2Text">เมื่อเรื่องราวผ่านไป...</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณเดินออกมาจากห้องประชุมเก่าเป็นคนสุดท้ายพร้อมกับ B และ C', 'ก่อนที่ฝีเท้าของคุณจะชะงักลงเมื่อคุณได้พบเข้ากับคนคนหนึ่งที่ยืนรออยู่ที่หน้าประตู', 'คุณ : A?', 'A : ตามมาหน่อยสิ'], 'scene43')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene43':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s43.png">
+                        <p id="scene2-text" class="scene2Text">คุณหันไปมอง B และ C ที่อยู่ข้างหลังของคุณ สองคนนั้นแสดงท่าทีที่บอกว่า</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['‘อยากทำอะไรก็ทำเลย ตามใจ’ และนั่นจึงทำให้คุณเดินตาม A ออกมา', 'A พาคุณไปยังทางเดินเก่าที่คุณเคยมาตอนได้เจอกับ E ครั้งแรก ความเงียบเข้าปกคลุมพวกคุณทั้งคู่ ก่อนที่ A จะเอ่ยปากขึ้น', 'A : ${nameCharacter} เหมือนเรานะ รู้มั้ย', 'คุณ : เหมือนตรงไหน', 'A : เราเคยอยู่กลุ่มเดียวกับ C ตอนนั้นก็มีกัน 4 คนนั่นแหละ', 'อยู่ด้วยกันมาตั้งแต่ C เริ่มเข้าเรียนใหม่ ๆ เลยล่ะ', 'A : C ก็ยังเป็นคุณชายเอาแต่ใจเหมือนตอนนี้ไม่มีผิด', 'A : เราในตอนนั้นเลือกเข้ากลุ่มกับ C เพราะต้องการหาที่พึ่ง', 'บ้าน C รวยที่สุดในโรงเรียน แล้วก็…อืม นั่นแหละ', 'A : เราคิดว่าเรารับเรื่องพวกนั้นไหว จนกระทั่งวันหนึ่งที่เราเจอแบบ ${nameCharacter} วันนี้', 'A : เราเลือกที่จะเดินหนีออกมา แล้วขอออกจากกลุ่มของ C', 'A : ตอนแรกก็เกือบแล้วนะ ตอนนั้นคิดว่าถ้าทำแบบเดียวกับ ${nameCharacter} ตอนนี้ เราจะอยู่ในกลุ่มได้โดยไม่ต้องกลัวอะไร', 'A : แต่คิดดูอีกที เราคงเกลียดตัวเองไปตลอดชีวิต', 'A : C ยอมรับเรื่องที่เราจะออกจากกลุ่ม นั่นคงเป็นความใจดีสุดท้ายล่ะมั้ง', 'A : เราไม่ว่าเรื่องที่ ${nameCharacter} ทำต่างกับเรา เพราะเรารู้ว่าเราสองคนผ่านเรื่องมาต่างกัน', 'ในบรรดาเรา B D ไม่มีใครเลือกเหมือนกันสักคน', 'A : ที่ B ยังอยู่กับ C ได้ก็เพราะ C มีเงินมากพอจะปิดปากอาจารย์เรื่องพฤติกรรมของ B', 'ในขณะที่ D เลือกอยู่กับ C เพราะ C มีคอนเนกชั่นพอจะหาข้อสอบเก่ามาให้', 'D ที่ต้องรักษาเกรดเพราะเป็นนักเรียนทุนได้ และสองคนนั้นก็ตอบแทน C ด้วยวิธีที่ต่างกัน', 'A : การทำแบบเดียวกับ B จะทำให้ชีวิตหลังจากนี้ของ ${nameCharacter} มั่นคงขึ้นก็จริง', 'แต่เคยคิดรึเปล่าว่าถ้าพวกเราโตเป็นผู้ใหญ่เมื่อไหร่', 'สิ่งที่เกิดขึ้นช่วงนี้จะกลายเป็นฝันร้ายที่เราไม่อยากพูดถึงเพราะมันจะทำลายชีวิตปัจจุบัน', 'A : เรามีเรื่องจะบอกแค่นี้แหละ'], 'scene44')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene44':
+                    var scene9Content = `
+                        <p id="scene2-text" class="scene2Text">แล้ว A ก็เดินจากไปจากคุณ และจากไปจากชีวิตของคุณเช่นกัน</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', [], 'G1')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene45':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s45.png">
+                        <p id="scene2-text" class="scene2Text">ศีลธรรมเอาชนะจนได้ และด้วยเหตุนั้น คุณจึงพุ่งเข้าไปกลางวงและผลัก B ออก</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ความวุ่นวายบังเกิดขึ้นในทันทีเมื่อคุณที่สงบเสงี่ยมมาตลอดกระทำในสิ่งที่ต่างไปจากที่ทุกคนคิด'], 'scene46')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene46':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s46.png">
+                        <p id="scene2-text" class="scene2Text">??? : เด็กใหม่มันเป็นบ้าไปแล้ว !!!</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณและ B ฉุดยื้อกันไปกันมาสักพักหนึ่ง ก่อนที่ C จะทนไม่ไหว และเดินมาสาดน้ำใส่คุณ', 'C : จู่ ๆ เป็นบ้าอะไรขึ้นมา ก่อนหน้านี้ก็อยู่สงบมาได้ตั้งนานนี่', 'คุณ : ก็ถ้าฉันยังเป็นแบบนี้ต่อไป ฉันก็ต้องเกลียดตัวเข้าให้สักวัน', 'B : พูดเหมือนตัวเองเป็นผู้ผดุงความยุติธรรมตายล่ะ อยากทำตัวเป็นคนดีมากนักเหรอ ?', 'A : ก็ดีกว่าคนแบบเธอน่ะนะ'], 'scene47')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene47':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s47.png">
+                        <p id="scene2-text" class="scene2Text">A เดินเข้ามากลางวง และนักเรียนทุกคนต่างก็เกิดเสียงฮือฮาราวกับเห็นสิ่งมหัศจรรย์</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ตปก. : A ไม่มาที่ตึกเก่ามาเป็นปีแล้วนี่ !?', '??? : ใช่ ก็ตั้งแต่ A ออกจากกลุ่ม C ไป ก็ไม่มีใครเห็น A มาที่ตึกเก่าอีกเลย', 'คุณ [A ออกจากกลุ่ม C งั้นเหรอ !?]', 'B : ฉันเป็นแบบไหนไม่ทราบ ?', 'A : คิดดูดี ๆ เถอะ เธอเองก็เคยโดนบูลลี่ไม่ใช่รึไง', 'A : พอย้ายโรงเรียนแล้วมี C หนุนหลังก็ลืมไปเลยสินะว่าเคยเกลียดคนที่บูลลี่คนอื่นขนาดไหน', 'A : กลายมาเป็นเองแบบนี้น่ะ โคตรไม่มีจิตสำนึกเลย', 'B : แหม เหมือนเธอดีตายล่ะ คิดว่าก่อนหน้านี้ที่เธอเมินมาตลอดคือมีจิตสำนึกมากมั้ง ?', 'อย่าคิดจะมาทำตัวเป็น D ที่วัน ๆ เอาแต่วางแผนให้ C แล้วไม่ทำอะไรเลย', 'เพราะอยากได้แค่ข้อสอบเก่าหน่อยเลย เธอน่ะไร้ประโยชน์กว่า D อีก', 'C : พอได้แล้ว', 'ทุกคนในห้องประชุมเงียบตามคำของ C อย่างไม่มีข้อแม้', 'กระทั่ง A และ B ที่ก่อนหน้านี้ยังเถียงกันฉอด ๆ', 'ก็ยังหยุด C เดินเข้ามาใกล้พวกเธอมากขึ้นเรื่อย ๆ', 'ก่อนที่จะพูดกับ A เบา ๆ โดยให้ได้ยินกันแค่พวกเธอ', 'C : ออกไปจากห้องประชุมนี้ซะ ไม่ต้องกลับเข้ามาอีก นี่เป็นการใจดีครั้งสุดท้ายของฉัน', 'A : เราจะพา ${nameCharacter} ออกไปด้วย', 'C : ไม่ได้', 'C : ถ้ามันแค่อยู่เงียบ ๆ แล้วขอออกจากกลุ่มทีหลังเหมือนเธอ ฉันยังให้ได้', 'C : แต่นี่มันเล่นหักหน้าฉันต่อหน้าคนเป็นร้อย เธอคิดว่าฉันจะปล่อยไปเหรอ ?', 'C : ไสหัวไปจากที่นี่ซะ A เรื่องนี้มันไม่เกี่ยวกับเธอ', 'C : เลือกเอา เธอจะกลับไปใช้ชีวิตประจำวันของเธออย่างปลอดภัยเหมือนที่ผ่านมา', 'C : หรือจะโดนแบบเดียวกับที่ E โดนและเด็กใหม่นี่กำลังจะโดน'], 'scene48')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene48':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s48.png">
+                        <p id="scene2-text" class="scene2Text">A ยืนนิ่งไปเมื่อได้รับข้อเสนอเช่นนั้น</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ก่อนที่ไม่กี่วินาทีให้หลัง A จะเงยหน้าขึ้นมาและมองคุณด้วยแววตาเปี่ยมไปด้วยคำขอโทษ', 'ซึ่งเพียงเท่านั้นก็เป็นคำตอบของทุกสิ่ง'], 'scene49')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene49':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s49.png">
+                        <p id="scene2-text" class="scene2Text">A เดินออกไปจากห้องประชุมนี้และทิ้งคุณไว้ท่ามกลางผู้คนมากมาย</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', [], 'H1')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene50':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s50.png">
+                        <p id="scene2-text" class="scene2Text">คุณเลือกที่จะเดินออกมาจากห้องประชุม หางตาเหลือบไปเห็น B ยักไหล่ราวกับคาดเดาไว้แล้ว ในขณะที่ C ก็ทำท่าทางไม่สนใจอะไร</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['เมื่อคุณเดินออกมาจากห้องประชุมแล้ว คุณก็ได้เจอเข้ากับ A ที่ยืนอยู่หน้าประตู', 'ใบหน้าของ A แสดงสีหน้าไม่ยินดียินร้ายอะไรทั้งนั้น'], 'scene51')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene51':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s51.png">
+                        <p id="scene2-text" class="scene2Text">A : ไม่นึกว่าเธอจะทำแบบนี้</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณ : แล้ว A คิดว่าเราจะทำแบบไหนล่ะ', 'A : ก็…ไหลตามไปกับพวกนั้นล่ะมั้ง ?', 'A : ตามมาหน่อยมั้ย'], 'scene52')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene52':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s52.png">
+                        <p id="scene2-text" class="scene2Text">A เอ่ยปากกับคุณก่อนที่จะเดินนำคุณออกจากตึกเก่าไป</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ฝีเท้าของคุณที่ก้าวตาม A ย้อนให้คุณหวนกลับไปนึกถึงวันแรกที่คุณเข้าเรียน', 'ตอนนั้นกับตอนนี้ห่างกันเพียงไม่นาน ทว่าคุณกลับรู้สึกประหลาดเหลือเกินกับการเดินตาม A เช่นนี้', 'เพราะนับตั้งแต่คุณอยู่กลุ่มเดียวกับ C คุณก็ไม่ได้ไปไหนมาไหนกับ A อีก', 'A เดินพาคุณกลับไปยังห้องเรียนที่ร้างผู้คนเนื่องจากทุกคนไปอยู่ที่ตึกเก่ากันหมด แล้ว A ก็นั่งลงตรงที่นั่งของตน', 'A : ทำไมถึงเลือกที่จะเดินออกมาล่ะ ?', 'คุณ : …', 'คุณ : ถ้าฉันเลือกที่จะทำตามที่ B บอก ฉันคงเสียใจไปตลอดชีวิต', 'คุณ : คนที่เคยโดนทำร้ายในอดีตกลายมาเป็นคนที่ทำร้ายคนอื่นในตอนนี้ ตลกเป็นบ้า', 'A : ก็มีคนเป็นแบบนั้นจริง ๆ นะ', 'คุณ : หมายความว่ายังไง ?', 'A : B น่ะ เคยโดนบูลลี่มาก่อนนะ', 'A : แต่ก่อนตอนที่ B ยังไม่ได้อยู่กลุ่มเดียวกับ C B ก็เคยเป็นคนโดนบูลลี่มาก่อน', 'เรื่องมันร้ายแรงมากจน B ย้ายโรงเรียน แล้วก็มาเจอกับ C', 'A : เพราะฉะนั้นที่ฉันจะสื่อก็คือ ไม่ใช่ทุกคนที่จะทำเหมือนที่เธอทำนะ', 'A : แต่ก็ไม่ได้หมายความว่าเธอทำผิดนะ ฉันเอง…ก็ทำแบบเธอ', 'คุณ [ก็ทำแบบเรางั้นเหรอ…]', 'คุณ : A กำลังหมายความว่า ถ้า A อยู่สถานการณ์เดียวกับเรา', 'คุณ : A กำลังหมายความว่า ถ้า A อยู่สถานการณ์เดียวกับเรา', 'คุณ : A จะทำแบบเราสินะ', 'A : ไม่ใช่', 'A : ฉันเคยอยู่กลุ่มเดียวกับ C และเคยโดนแบบเดียวกับเธอ', 'A : ในตอนนั้นฉันเลือกที่จะเดินออกจากห้องประชุมและขอออกจากกลุ่ม', 'ซึ่ง C ก็ตกลง และฉันก็ยังมีชีวิตอยู่อย่างปกติสุขได้จนถึงทุกวันนี้', 'A : ฉันหมายความว่า ถ้าเธอไม่ไหว เธอสามารถขอออกจากกลุ่มและมาอยู่กับฉันได้นะ', 'โดยที่เธอจะปลอดภัยอย่างแน่นอน'], 'scene52-2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene52-2':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s52.png">
+                        <p id="scene2-text" class="scene2Text">A : เธอสนใจมั้ย ?</p>
+                        <div class="button-container">
+                            <button style="flex: 1;" onclick="nextPage('scene53')">ออกจากกลุ่มของ C และมาอยู่กับ A</button>
+                            <button style="flex: 1;" onclick="nextPage('scene54)">กลับเข้ากลุ่มไปอยู่สถานะเดียวกับ D </button>
+                        </div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene53':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s53.png">
+                        <p id="scene2-text" class="scene2Text">คุณเลือกที่จะขอออกจากกลุ่มของ C ซึ่งจากปฎิกิริยาของ C แล้วก็คงไม่ได้เหนือความคาดหมายอะไร</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['แต่ท่าทางของ B ที่มีต่อคุณกลับเต็มไปด้วยความโกรธ', 'B : เหอะ คิดว่าจะแน่', 'C : ${nameCharacter} เพื่อนรัก', 'คุณขนลุกวาบกับคำเรียกขานของ C จากนิสัยของ C เธอไม่มีทางเรียกใครว่าเพื่อนรักแน่นอน', 'ยกเว้นแต่จะประชดกันด้วยความโกระแค้นเสียเต็มประดา', 'C : ถ้าเธอยืนกรานแบบนั้นและ D โอเค ฉันก็ไม่ว่าอะไรหรอกนะ', 'C : อย่าลืมนะว่าที่ฉันไม่ทำอะไรเธอ เป็นเพราะว่าฉันยอมไว้หน้า A ', 'C : เกาะ A ให้แน่น ๆ แล้วกัน', 'C ยอมปล่อยคุณไปแต่โดยดี และชีวิตหลังจากนั้นของคุณก็เต็มไปด้วยความสงบสุข'], 'scene2special')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene2special':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s2.png">
+                        <p id="scene2-text" class="scene2Text">มี A ที่คอยอยู่ข้างกันและปกป้อง มีชีวิตมัธยมปลายที่ปลอดภัยไม่เหมือนในอดีตที่ผ่านมา</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['แม้จะมีคนถูกทิ้งไว้ด้านหลัง แต่คุณก็ไม่รู้จะช่วยอย่างไรอยู่ดี', 'เพียงตัวเราปลอดภัยก็ดีแล้วนี่นา', 'จริงหรือ ?', 'End'], 'scene0')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'scene54':
+                    let scene10Content;
+                    if (friendlyValue > 7) {
+                        scene10Content = `
+                            <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s54.png">
+                            <p id="scene2-text" class="scene2Text">คุณยังอยู่ในกลุ่มของ C ต่อไปด้วยสถานะเดียวกับ D และใช้ชีวิตต่อไปเรื่อย ๆ ตราบจนเรียนจบมัธยมปลาย</p>
+                            <div class="full-click" onclick="changeContent('scene2-text', ['คุณได้สอบติดมหาวิทยาลัยและคณะที่ต้องการ มีชีวิตที่ราวกับฝัน'], 'E1A')"></div>
+                        `;
+                    } else {
+                        scene10Content = `
+                            <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s54.png">
+                            <p id="scene2-text" class="scene2Text">คุณยังอยู่ในกลุ่มของ C ต่อไปด้วยสถานะเดียวกับ D และใช้ชีวิตต่อไปเรื่อย ๆ ตราบจนเรียนจบมัธยมปลาย</p>
+                            <div class="full-click" onclick="changeContent('scene2-text', ['คุณได้สอบติดมหาวิทยาลัยและคณะที่ต้องการ มีชีวิตที่ราวกับฝัน'], 'E1B')"></div>
+                        `;
+                    }
+                    storyContainer.innerHTML = scene10Content;
+                    break;
+                    
+                
+                case 'E1A':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s55-1.png">
+                        <p id="scene2-text" class="scene4Text">คุณมีค่าความเป็นมิตรน้อยกว่า 8</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', [], 'E1A-2')"></div>  
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'E1A-2':
+                    var scene9Content = `
+                        <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s55-2.png">
+                        <p id="scene2-text" class="scene4Text">คุณเรียนจบและเริ่มเข้าทำงานเป็นนักแสดงคนหนึ่ง</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ด้วยความโชคดี คุณได้ต้นสังกัดที่ดีและผู้จัดการที่ยอดเยี่ยม','คุณได้สอบติดมหาวิทยาลัยและคณะที่ต้องการ มีชีวิตที่ราวกับฝัน', 'แต่ในวันที่คุณได้เข้ารับรางวัลนักแสดงหน้าใหม่ยอดเยี่ยมประจำปี', 'ก็มีข่าวข่าวหนึ่งผุดขึ้นมาและกลายเป็นกระแสอย่างรวดเร็ว', '‘วงในเผย ! นักแสดงหน้าใหม่ชื่อย่อ ${nameCharacter[0]} อดีตเคยบูลลี่เพื่อน', 'ข่าวนั้นลุกลามและแพร่กระจายอย่างรวดเร็วราวกับไฟลามทุ่ง', ' ยิ่งข่าวนี้ปรากฏขึ้นในวันที่ชื่อของคุณถูกค้นหาเป็นอันดับหนึ่งในแทบทุกแพลตฟอร์ม ก็ยิ่งแผดเผาทุกสิ่งจนสิ้นซาก','C ลบคุณออกจากกลุ่ม', 'End'], 'scene0')"></div>  
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+                
+                case 'E1B':
+                    var scene9Content = `
+                    <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s55-1.png">
+                        <p id="scene2-text" class="scene4Text">คุณมีค่าความเป็นมิตรมากกว่า 7</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', [], 'E1B-2')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'E1B-2':
+                    var scene9Content = `
+                    <img loading="lazy" class="scene2-image object-cover object-bottom" src="./images/s55-3.png">
+                        <p id="scene2-text" class="scene4Text">คุณเรียนจบและเริ่มเข้าทำงานเป็นนักแสดงคนหนึ่ง</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ด้วยความโชคดี คุณได้ต้นสังกัดที่ดีและผู้จัดการที่ยอดเยี่ยม','คุณได้สอบติดมหาวิทยาลัยและคณะที่ต้องการ มีชีวิตที่ราวกับฝัน', 'แต่ในวันที่คุณได้เข้ารับรางวัลนักแสดงหน้าใหม่ยอดเยี่ยมประจำปี', 'ก็มีข่าวข่าวหนึ่งผุดขึ้นมาและกลายเป็นกระแสอย่างรวดเร็ว', '‘วงในเผย ! นักแสดงหน้าใหม่ชื่อย่อ ${nameCharacter[0]} อดีตเคยบูลลี่เพื่อน', 'ข่าวนั้นลุกลามและแพร่กระจายอย่างรวดเร็วราวกับไฟลามทุ่ง', ' ยิ่งข่าวนี้ปรากฏขึ้นในวันที่ชื่อของคุณถูกค้นหาเป็นอันดับหนึ่งในแทบทุกแพลตฟอร์ม ก็ยิ่งแผดเผาทุกสิ่งจนสิ้นซาก', '', 'คุณกำโทรศัพท์แน่นด้วยความวิตกกังวล ชีวิตของคุณที่กำลังสดใสจะมาพังลงเพราะอดีตไม่ได้เป็นอันขาด', 'แต่คุณในตอนนี้ยังไม่อาจรู้ได้เลยว่าจะจัดการอย่างไรดี', 'โชคดีที่ข่าวนั้นค่อย ๆ ซาลงไปตามความเห็นของผู้คนที่เบื่อไปตามเวลา', 'คุณสามารถกลับมาใช้ชีวิตในฐานะนักแสดงได้ตามปกติ', 'แม้จะยังมีความหวาดระแวงต่ออดีตที่แก้ไขไม่ได้ แต่ชีวิตของคุณก็ต้องก้าวเดินต่อไป', 'แม้ในขณะนี้ จะยังมีคนผู้หนึ่งนั่งอยู่หลังแป้นพิมพ์รอโอกาสที่จะได้เปิดโปงความผิดของตัวคุณ', 'และคนอีกหลายคนที่รอโอกาสเหยียบซ้ำความผิดพลาดของคุณก็ตามที', 'End'], 'scene0')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'G1':
+                    var scene9Content = `
+                        <p id="scene2-text" class="scene2Text">หลังจากที่คุณเริ่มเข้าร่วมการกลั่นแกล้ง ทุกอย่างก็ดูจะทวีความรุนแรงยิ่งขึ้น</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['การกลั่นแกล้งที่ตอนแรกมีแค่ที่ตึกเก่าเริ่มลุกลามมาที่อาคารเรียนปกติ', 'B ก็ดูจะชอบใจเมื่อตนได้เพื่อนร่วมด้วยมาคนหนึ่ง คุณกับ B จึงยิ่งสนิทกัน', '(B สาดน้ำใส่ E)', 'B : เป็นไงล่ะ E เห็นดูร้อน ๆ เลยนึกว่าอยากได้น้ำรึเปล่า เย็นชื่นใจเลยมั้ยล่ะ', 'คุณ : นั่นสิ แต่ดูท่า E ของพวกเราจะยังอยากได้อย่างอื่นเพิ่มนะ', 'คุณมองไปที่โต๊ะเรียนของ B และหยิบคัตเตอร์ออกมา', 'B : เห้ย ๆๆๆ ${nameCharacter}', 'คุณ : B อย่าคิดมากสิ แค่เห็น E ดูอยากได้ผมทรงใหม่แค่นั้นเอง', 'B : นั่นน่ะสิ E เธออยากได้ผมทรงใหม่รึเปล่า', 'E : ไม่นะ B ${nameCharacter} ฉันขอร้องล่ะ', 'คุณ : อะไรนะ ใช่เหรอ', 'คุณสับเท้าเข้าไปหา E ที่ตอนนี้กำลังนั่งตัวสั่นอยู่กับพื้น', 'คว้าเข้าที่เส้นผมของ E ก่อนจะจ่อคัตเตอร์เตรียมตัด', 'คุณ : ผมเหนียวเป็นบ้าเลย B นี่เธอเอาน้ำอะไรราดเนี่ย', 'B : จะอะไรล่ะ ก็น้ำถูพื้นไง', 'คุณ : แหวะ แหยงเป็นบ้าเลย ยัย B ยัยคนรสนิยมต่ำ', 'โดยไม่รู้ตัว E สบโอกาสที่คุณกำลังเผลอคุยกับ B อยู่', 'รีบแย่งคัตเตอร์ในมือของคุณทันที', 'คุณ : เห้ย ! อะไรวะ !?', 'คุณรีบถอยหนีออกมาทันทีเมื่อเห็นว่าอีกฝ่ายได้คัตเตอร์ไปอยู่ในมือ', 'E ยืนกำคัตเตอร์แน่นและตั้งท่าเหมือนจะพุ่งเข้ามาจู่โจม', 'B : คิดว่าได้คัตเตอร์ไปแล้วจะน่ากลัวขึ้นเหรอ ? แน่จริงก็แทงฉันเลยสิ', 'คุณ : เห้ย ! ไปยุอะไรแบบนั้น !!!', 'E พุ่งเข้ามาหาพวกคุณสองคนอย่างรวดเร็ว', 'ในขณะที่คุณก็กำลังหันไปโวยวายใส่ B', 'คุณ : ถ้ามันกระซวกพวกเราขึ้นมาทำไง', 'B : พวกเราเหรอ ? ไม่ใช่หรอก', 'B ผลักคุณไปหา E ในทันทีที่พูดจบ และด้วยแรงผลักอย่างรุนแรงก็ทำให้คุณเซตัวไปหา E เต็ม ๆ', 'คุณเหม่อมอง B ที่ผลักคุณเข้าไปหาความตายได้หน้าตาเฉย', 'มอง E ที่ตอนนี้สติหลุดและจ้วงมีดมายังตัวคุณ', 'ความเจ็บแผ่ขยายไปทั่วช่วงท้องและทำให้คุณขยับไม่ได้ราวกับเป็นอมพาต', 'เจ็บ เจ็บมาก', 'ทรมานไปหมดเลย', 'คุณคิดได้เช่นนั้นก่อนที่ทุกอย่างจะกลายเป็นความมืดมิด', 'ความรุนแรงไม่เคยนำไปสู่คำตอบที่ถูกต้อง', 'ไม่เคยแม้เพียงครั้งเดียว เช่นเดียวกับการอาศัย', 'ความรุนแรงเพื่ออยู่ร่วมในสังคม มันไม่เคยและไม่มีทางที่จะนำผลดีมาสู่ตัวคุณ', 'เช่นนั้น คนแบบนั้นหรือที่คุณอยากเป็น ?', 'คนแบบที่ถูกอำนาจและความรุนแรงครอบงำจิตใจ', 'จนไม่เหลือซึ่งความเป็นมนุษย์ ? คนที่ทำร้ายคนอื่นได้อย่างไร้สติ ?', 'คุณจะเป็นคนเช่นนั้นจริง ๆ หรือ ?', 'End'], 'scene0')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'H1':
+                    var scene9Content;
+                    if (friendlyValue > 7) {
+                        scene9Content = `
+                        <p id="scene2-text" class="scene2Text">ชีวิตหลังจากนั้นของคุณราวกับตกลงไปในห้วงนรกขุมที่ลึกที่สุด</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณโดนกลั่นแกล้งราวกับไม่ใช่คน เหยื่อรายต่อไปจาก E ก็คือคุณ', '??? : แหนะ จะไปไหนเหรอจ๊ะ', 'คุณขมวดคิ้วมองเพื่อนร่วมรุ่นคนหนึ่งที่เดินมาขวางคุณเอาไว้ ปากพลางไปไวกว่าความคิด', 'คุณ : แล้วยุ่งอะไรด้วยล่ะ', 'ตปก. : แหม ฉันก็ไม่ได้อยากยุ่งกับเธอเท่าไหร่หรอกนะ พอดีราชาของเราอยากคุยกับเธอนี่สิ', 'คุณ [ราชา…หนีไม่พ้น C สินะ]', 'คุณ : C อยากคุยอะไรกับฉันล่ะ', '??? : ไม่ใช่ตรงนี้', '??? : ตึกเก่าต่างหากล่ะ', 'ทันใดนั้นก็มีคนมาประกบคุณจากด้านหลังและจับตัวของคุณเอาไว้', 'คุณถูกมัดอยู่ที่ดาดฟ้าตึกเก่า รอบตัวของคุณคือเหล่านักเรียนเพื่อนร่วมชั้นทุกคน', 'คุณ : B !?', 'B : เออสิ คิดว่าเป็นใครล่ะ', 'B เดินเข้ามาใกล้คุณเรื่อย ๆ และเตะเข้าที่เก้าอี้ซึ่งคุณถูกพันธนาการไว้อยู่', 'นั่นจึงทำให้ตัวของคุณล้มลงกระแทกกับพื้นอย่างรุนแรง', 'ความแสบเกิดขึ้นที่แขนและข้างแก้มทำให้คุณพอจะเดาออกได้ว่าคุณคงได้รับบาดเจ็บแล้ว', 'คุณ : เป็นบ้าอะไรของเธอเนี่ย !?', 'B : ก็คงเป็นบ้าล่ะมั้ง และแกจะทำอะไรคนบ้าอย่างฉันล่ะ ?', 'B : ไม่สิ เปลี่ยนคำถาม แล้วแกทำอะไรคนบ้าอย่างฉันได้ด้วยเหรอ ? ก็ไม่', 'B : น่าสงสารจริง ๆ เลยน้า', 'B พูดจาเยาะเย้ยถากถางคุณด้วยสีหน้าเปี่ยมความสนุก', 'เสียงหัวเราะของเพื่อนร่วมสายชั้นที่มองสภาพคุณเป็นแบบนั้นบาดลึกเข้าไปในหัวใจของคุณ', 'คุณรู้อยู่แล้วล่ะ ว่าชีวิตของคุณจะไม่กลับมาเป็นเหมือนเดิมอีก', 'รู้ตั้งแต่เลือกจะช่วย E แล้ว', 'แต่ถึงอย่างนั้น คุณก็หวังให้มีใครสักคนมาช่วยคุณที'], 'H1A')"></div>
+                        `;
+                    } else {
+                        scene9Content = `
+                        <p id="scene2-text" class="scene2Text">ชีวิตหลังจากนั้นของคุณราวกับตกลงไปในห้วงนรกขุมที่ลึกที่สุด</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['คุณโดนกลั่นแกล้งราวกับไม่ใช่คน เหยื่อรายต่อไปจาก E ก็คือคุณ', '??? : แหนะ จะไปไหนเหรอจ๊ะ', 'คุณขมวดคิ้วมองเพื่อนร่วมรุ่นคนหนึ่งที่เดินมาขวางคุณเอาไว้ ปากพลางไปไวกว่าความคิด', 'คุณ : แล้วยุ่งอะไรด้วยล่ะ', 'ตปก. : แหม ฉันก็ไม่ได้อยากยุ่งกับเธอเท่าไหร่หรอกนะ พอดีราชาของเราอยากคุยกับเธอนี่สิ', 'คุณ [ราชา…หนีไม่พ้น C สินะ]', 'คุณ : C อยากคุยอะไรกับฉันล่ะ', '??? : ไม่ใช่ตรงนี้', '??? : ตึกเก่าต่างหากล่ะ', 'ทันใดนั้นก็มีคนมาประกบคุณจากด้านหลังและจับตัวของคุณเอาไว้', 'คุณถูกมัดอยู่ที่ดาดฟ้าตึกเก่า รอบตัวของคุณคือเหล่านักเรียนเพื่อนร่วมชั้นทุกคน', 'คุณ : B !?', 'B : เออสิ คิดว่าเป็นใครล่ะ', 'B เดินเข้ามาใกล้คุณเรื่อย ๆ และเตะเข้าที่เก้าอี้ซึ่งคุณถูกพันธนาการไว้อยู่', 'นั่นจึงทำให้ตัวของคุณล้มลงกระแทกกับพื้นอย่างรุนแรง', 'ความแสบเกิดขึ้นที่แขนและข้างแก้มทำให้คุณพอจะเดาออกได้ว่าคุณคงได้รับบาดเจ็บแล้ว', 'คุณ : เป็นบ้าอะไรของเธอเนี่ย !?', 'B : ก็คงเป็นบ้าล่ะมั้ง และแกจะทำอะไรคนบ้าอย่างฉันล่ะ ?', 'B : ไม่สิ เปลี่ยนคำถาม แล้วแกทำอะไรคนบ้าอย่างฉันได้ด้วยเหรอ ? ก็ไม่', 'B : น่าสงสารจริง ๆ เลยน้า', 'B พูดจาเยาะเย้ยถากถางคุณด้วยสีหน้าเปี่ยมความสนุก', 'เสียงหัวเราะของเพื่อนร่วมสายชั้นที่มองสภาพคุณเป็นแบบนั้นบาดลึกเข้าไปในหัวใจของคุณ', 'คุณรู้อยู่แล้วล่ะ ว่าชีวิตของคุณจะไม่กลับมาเป็นเหมือนเดิมอีก', 'รู้ตั้งแต่เลือกจะช่วย E แล้ว', 'แต่ถึงอย่างนั้น คุณก็หวังให้มีใครสักคนมาช่วยคุณที'], 'H1B')"></div>
+                        `;
+                    }
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'H1A':
+                    var scene9Content = `
+                        <p id="scene2-text" class="scene2Text">คุณมีค่าความเป็นมิตรมากกว่า 7</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ในขณะที่คนมากมายรอบตัวกำลังหัวเราะเยาะคุณ', 'สายตาของคุณก็มองเห็นคนประมาณสองสามคนที่มองคุณด้วยสายตาสงสาร', 'และเมื่อทุกคนเดินออกไปแล้ว สามคนนั้นก็เดินเข้ามาหาคุณ', '??? : ให้ฉันช่วยนะ', 'หนึ่งในสามคนนั้นเดินเข้ามาช่วยแก้มัดให้คุณ และพยุงตัวคุณขึ้น', 'เจ็บไปทั้งกาย แต่หัวใจไม่เจ็บเหมือนเดิมอีกแล้ว', 'ในครั้งแรก…นึกว่าตนเองหมดหวังเรื่องจะมีคนมาช่วยไปแล้วเสียอีก'],'scene0')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'H1B':
+                    var scene9Content = `
+                        <p id="scene2-text" class="scene2Text">คุณมีค่าความเป็นมิตรน้อยกว่า 8</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['การกลั่นแกล้งดำเนินไปเรื่อย ๆ อย่างไม่มีทีท่าว่าจะสิ้นสุด', 'เหยื่อของ B เปลี่ยนจาก E มาเป็นคุณจนได้', 'คุณควรต้องทำยังไงถึงจะหลุดพ้นจากความทรมานนี้ไปได้เสียที ในเมื่อต่อให้อยู่ในสังคมใหม่เพียงใด คุณก็ยังโดนกระทำแบบเดิม', 'หรือว่าความผิดมันอยู่ที่ตัวคุณกันแน่', 'เช่นนั้น หรือคุณต้องหายไปจากโลกนี้เพื่อหนีจากความทรมานกัน ?','End'],'scene0')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'zeroFriendly':
+                    var scene9Content = `
+                        <p id="scene2-text" class="scene2Text">คุณมีค่าความเป็นมิตร = 0</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['วันนี้คุณเข้ามาโรงเรียนตามปกติ แต่สิ่งที่เปลี่ยนไปกลับเป็นพฤติกรรมของเพื่อนร่วมห้อง', 'ทั้งสายตาแปลก ๆ ท่าทางเหมือนไม่ต้องการสนทนาด้วย สีหน้าและน้ำเสียงที่แสดงถึงความอึดอัดอย่างชัดเจน', 'คุณ : พวกเธอเป็นอะไรไป', '??? : ถามตัวเองดีกว่ามั้ย ที่พูดเนี่ยคิดบ้างมั้ย', 'คุณยืนนิ่งอยู่เพียงคนเดียวกลางห้อง สายตาของเพื่อนร่วมห้องคล้ายจะมองคุณเป็นอากาศไปหมด ไร้ตัวตน ไม่มีใครสนใจ', 'มันกลับมาอีกแล้วเหรอ สิ่งที่คุณเกลียดที่สุด', 'มันพลาดตรงไหนกัน ?', 'การกลั่นแกล้งดำเนินไปเรื่อย ๆ อย่างไม่มีทีท่าว่าจะสิ้นสุด', 'คุณควรต้องทำยังไงถึงจะหลุดพ้นจากความทรมานนี้ไปได้เสียที', 'ในเมื่อต่อให้อยู่ในสังคมใหม่เพียงใด คุณก็ยังโดยกระทำแบบเดิม', 'หรือว่าความผิดมันอยู่ที่ตัวคุณกันแน่', 'เช่นนั้น หรือคุณต้องหายไปจากโลกนี้เพื่อหนีจากความทรมานกัน ?', 'End'],'scene0')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+                case 'zeroResilience':
+                    var scene9Content = `
+                        <p id="scene2-text" class="scene2Text">คุณมีค่าความความแข็งแรงทางจิตใจ = 0</p>
+                        <div class="full-click" onclick="changeContent('scene2-text', ['ไม่ไหวแล้ว', 'ทำไมต้องเป็นเรา', 'อยากให้มีใครสักคน...อยู่ตรงนี้...ตอนนี้','คุณควรต้องทำยังไงถึงจะหลุดพ้นจากความทรมานนี้ไปได้เสียที', 'ในเมื่อต่อให้อยู่ในสังคมใหม่เพียงใด คุณก็ยังโดยกระทำแบบเดิม', 'หรือว่าความผิดมันอยู่ที่ตัวคุณกันแน่', 'เช่นนั้น หรือคุณต้องหายไปจากโลกนี้เพื่อหนีจากความทรมานกัน ?', 'End'],'scene0')"></div>
+                    `;
+                    storyContainer.innerHTML = scene9Content;
+                    break;
+
+            }
+                setTimeout(function () {
+                    storyContainer.classList.remove('fade-out');
+                    storyContainer.classList.add('fade-in');
+                }, 50); // Adjust the delay based on your transition duration
+            }, 300);
+                }
+
+        function toggleModal() {
+            var modal = document.getElementById('modal');
+            var modalContent = document.getElementById('modal-content');
+    
+            modal.classList.toggle('active');
+            modalContent.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

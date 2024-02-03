@@ -1,0 +1,188 @@
+body {
+    font-family: "Athiti", Arial;
+    margin: 0;
+    padding: 0;
+    background-color: #050f1c;
+    color: white;
+    overflow: hidden;
+    user-select: none;
+}
+
+.header {
+    position: fixed;
+    background-color: transparent;
+    height: 80px;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 40px;
+    padding-top: 30px;
+    color: white;
+    z-index: 99;
+}
+
+.logo img {
+    max-height: 50px;
+}
+
+.social {
+    padding-left: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+
+.main-content {
+    display: flex;
+    flex-direction: column; /* Adjust layout for smaller screens */
+    padding-top: 20px;
+    padding-right: 20px;
+
+}
+
+.content-left image {
+    max-width: 100%;
+    height: auto;
+}
+
+.image1 {
+    padding-left: 0;
+    height: 100%;
+    width: auto;
+}
+
+/* Add a class for the fixed-size logo */
+.fixed-logo {
+    position: relative;
+    padding-right: 20px;
+    max-width: 90%; /* Set the desired fixed width */
+    height: auto;
+}
+
+/* Update the styles for content-right to use flex */
+.content-right {
+    align-items: center;
+    padding-top: 20px;
+    position: fixed;
+}
+
+/* Adjust the styles for the button */
+.content-right button {
+    margin-top: 10px;
+}
+
+.start-button {
+    border-color: white;
+    border-width: 1px;
+    border-radius: 20px;
+    width: 18vw;
+    height: 4vw;
+    margin-top: 1.82vw;
+    font-size: 1.875vw;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#story.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+}
+
+#story {
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+}
+
+@media (min-width: 768px) {
+    /* Adjust styles for screens wider than 768px */
+    .main-content {
+        flex-direction: row; /* Reset to original layout */
+    }
+    .content-left {
+        flex: 5;
+        height: auto;
+    }
+    .content-right {
+        padding-top: 200px;
+        justify-content: center;
+        align-items: flex-start; /* Align content at the left */
+        margin-top: 10px; /* Add margin for spacing */
+        flex: 2;
+        position: relative;
+    }
+
+    .image1 {
+        max-width: 100%;
+        padding-left: 0;
+        height: auto;
+    }
+}
+
+
+@media (max-width: 768px) {
+    /* Adjust styles for screens narrower than or equal to 768px */
+    .main-content {
+        flex-direction: column; /* Adjust layout for smaller screens */
+    }
+    .content-left {
+        height: max-content;
+        width: auto;
+    }
+    .content-right {
+        padding-top: 20px;
+        align-items: center;
+        margin-top: 0; /* Remove margin for spacing */
+        flex: 1;
+        padding-left: 20px;
+        padding-top: 20px;
+        position: absolute; 
+        top: 70%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+    }
+
+    .image1 {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column; /* Adjust layout for smaller screens */
+    }
+    .content-left {
+        height: auto;
+    }
+    .content-right {
+        padding-top: 20px;
+        align-items: center;
+        margin-top: 0; /* Remove margin for spacing */
+        flex: 1;
+        padding-left: 20px;
+        position: relative;
+    }
+
+    .image1 {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+
+
+
